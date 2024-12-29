@@ -1,7 +1,32 @@
+import Image from "next/image";
+import { HeaderTabs } from "./header-tabs";
+import { UserAccount } from "./user-account";
+import { Tab } from "./header.types";
+import { Stays } from "./stays";
+import { Experiences } from "./experiences";
+
 const Header = () => {
+  const tabs: Tab[] = [
+    { label: "Stays", content: <Stays /> },
+    { label: "Experiences", content: <Experiences /> },
+  ];
+
   return (
-    <div className="header w-full bg-purple-500 h-36 flex items-center justify-center">
-      <h1 className="text-6xl">Header</h1>
+    <div className="header w-full h-36 flex items-start justify-between mt-5 mx-auto pl-4 pr-4">
+      {/* logo */}
+      <Image
+        src="/images/Airbnb-Logo.png"
+        width={150}
+        height={150}
+        alt="airbnb logo"
+        className="pt-4"
+      />
+
+      {/* navbar */}
+      <HeaderTabs tabs={tabs} />
+
+      {/* user account */}
+      <UserAccount />
     </div>
   );
 };
