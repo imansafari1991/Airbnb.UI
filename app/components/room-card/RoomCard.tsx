@@ -5,6 +5,7 @@ import Image from "next/image";
 import { HeartIcon, RateIcon } from "@/app/icons";
 import { Badge } from "../badge";
 import { ActionBtn } from "../action-btn";
+import { DisplayDate } from "../display-date";
 
 export const RoomCard: React.FC<IRoomCardProps> = ({
   data,
@@ -66,9 +67,7 @@ export const RoomCard: React.FC<IRoomCardProps> = ({
         </div>
 
         <p className="text-[#666565] text-sm tracking-wide">{distance}</p>
-        <p className="text-[#666565] text-sm tracking-wide leading-5">
-          Feb 10 – 15
-        </p>
+        <DisplayDate date={date} duration={duration} />
 
         <p className="font-semibold leading-7 text-black">
           {currency} {price} <span className="font-normal">night</span>
