@@ -1,7 +1,4 @@
-import { AnchorHTMLAttributes } from "react";
-
-export interface IRoomCardProps
-  extends AnchorHTMLAttributes<HTMLAnchorElement> {
+export interface IRoomCardProps {
   data: {
     title: string;
     loc: string;
@@ -16,4 +13,5 @@ export interface IRoomCardProps
   slug: string;
   isFavorite?: boolean;
   onFavoriteClickHandler: () => void;
+  className?: string;
 }

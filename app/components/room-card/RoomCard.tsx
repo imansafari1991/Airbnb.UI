@@ -1,11 +1,11 @@
 import { twMerge } from "tailwind-merge";
 import Link from "next/link";
 import { IRoomCardProps } from "./RoomCard.types";
-import Image from "next/image";
 import { HeartIcon, RateIcon } from "@/app/icons";
 import { Badge } from "../badge";
 import { ActionBtn } from "../action-btn";
 import { DisplayDate } from "../display-date";
+import { Slider } from "../slider";
 
 export const RoomCard: React.FC<IRoomCardProps> = ({
   data,
@@ -28,10 +28,9 @@ export const RoomCard: React.FC<IRoomCardProps> = ({
   } = data;
 
   return (
-    <Link
-      href={slug!}
+    <article
       className={twMerge(
-        "relative w-full h-auto flex flex-col gap-y-3 rounded-xl",
+        "relative w-full h-auto flex flex-col gap-y-3 rounded-xl cursor-pointer group",
         className
       )}
       {...props}
@@ -45,17 +44,10 @@ export const RoomCard: React.FC<IRoomCardProps> = ({
       {isFavorite && <Badge>Guest favorite</Badge>}
 
       {/* slider  */}
-      <div className="w-full h-full min-h-[250px] relative">
-        <Image
-          src={images[0]}
-          fill
-          alt={`images of ${title}`}
-          className="aspect-square object-center object-cover rounded-xl"
-        />
-      </div>
+      <Slider images={images} altText={title} slug={slug} />
 
       {/* content */}
-      <div>
+      <Link href={slug}>
         <div className="text-black font-semibold flex items-center justify-between leading-5">
           <h4 className="text-base">
             {title}, {loc}
@@ -72,7 +64,7 @@ export const RoomCard: React.FC<IRoomCardProps> = ({
         <p className="font-semibold leading-7 text-black">
           {currency} {price} <span className="font-normal">night</span>
         </p>
-      </div>
-    </Link>
+      </Link>
+    </article>
   );
 };
