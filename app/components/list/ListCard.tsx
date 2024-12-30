@@ -1,15 +1,24 @@
+"use client";
+
 import React from "react";
 import { RoomCard } from "../room-card";
+import { ROOM_CARD_DATA } from "@/constants";
 
 const ListCard: React.FC = () => {
-  const cards = Array.from({ length: 12 }, (_, index) => (
-    <RoomCard key={index} href="/" />
-  ));
-
   return (
     <div className="w-full h-full flex justify-center items-center">
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 px-6 py-6 w-full gap-y-10">
-        {cards}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 px-6 py-6 w-full gap-y-10">
+        {ROOM_CARD_DATA?.map((roomData) => (
+          <RoomCard
+            key={roomData?.id}
+            data={roomData}
+            isFavorite={roomData?.isFavorite}
+            slug={roomData?.slug}
+            onFavoriteClickHandler={() => {
+              console.log("action received for favourite");
+            }}
+          />
+        ))}
       </div>
     </div>
   );

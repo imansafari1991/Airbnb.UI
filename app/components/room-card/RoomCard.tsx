@@ -1,17 +1,54 @@
+import { twMerge } from "tailwind-merge";
 import Link from "next/link";
 import { IRoomCardProps } from "./RoomCard.types";
 import Image from "next/image";
-import { RateIcon } from "@/app/icons";
+import { HeartIcon, RateIcon } from "@/app/icons";
+import { Badge } from "../badge";
+import { ActionBtn } from "../action-btn";
 
-export const RoomCard: React.FC<IRoomCardProps> = ({ href }) => {
+export const RoomCard: React.FC<IRoomCardProps> = ({
+  data,
+  className,
+  slug,
+  isFavorite = false,
+  onFavoriteClickHandler,
+  ...props
+}) => {
+  const {
+    title,
+    loc,
+    currency,
+    date,
+    distance,
+    duration,
+    images,
+    price,
+    rate,
+  } = data;
+
   return (
-    <Link href={"/"} className="w-full h-auto flex flex-col gap-y-3 rounded-xl">
+    <Link
+      href={slug!}
+      className={twMerge(
+        "relative w-full h-auto flex flex-col gap-y-3 rounded-xl",
+        className
+      )}
+      {...props}
+    >
+      {/* favourite icon */}
+      <ActionBtn onClick={onFavoriteClickHandler}>
+        <HeartIcon className="stroke-white stroke-1" />
+      </ActionBtn>
+
+      {/* badge */}
+      {isFavorite && <Badge>Guest favorite</Badge>}
+
       {/* slider  */}
       <div className="w-full h-full min-h-[250px] relative">
         <Image
-          src={"/images/room-images/room-5.jpg"}
+          src={images[0]}
           fill
-          alt="image of ..."
+          alt={`images of ${title}`}
           className="aspect-square object-center object-cover rounded-xl"
         />
       </div>
@@ -19,20 +56,22 @@ export const RoomCard: React.FC<IRoomCardProps> = ({ href }) => {
       {/* content */}
       <div>
         <div className="text-black font-semibold flex items-center justify-between leading-5">
-          <h4 className="text-base">Liezen, Austria</h4>
+          <h4 className="text-base">
+            {title}, {loc}
+          </h4>
           <p className="text-base font-normal flex items-center gap-1">
             <RateIcon />
-            4.98
+            {rate}
           </p>
         </div>
 
-        <p className="text-[#929292] text-sm font-light">309 kilometers away</p>
-        <p className="text-[#929292] text-sm leading-5 font-light">
+        <p className="text-[#666565] text-sm tracking-wide">{distance}</p>
+        <p className="text-[#666565] text-sm tracking-wide leading-5">
           Feb 10 – 15
         </p>
 
         <p className="font-semibold leading-7 text-black">
-          € 104 <span className="font-normal">night</span>
+          {currency} {price} <span className="font-normal">night</span>
         </p>
       </div>
     </Link>

@@ -1,3 +1,4 @@
 import RateIcon from "./RateIcon";
+import HeartIcon from "./HeartIcon";
 
-export { RateIcon };
+export { RateIcon, HeartIcon };
