@@ -10,7 +10,7 @@ export default function Home() {
       </header>
       <main className="flex flex-col items-center justify-center w-full">
         <NavigationTag />
-        <ListCard/>
+        <ListCard />
       </main>
     </div>
   );
