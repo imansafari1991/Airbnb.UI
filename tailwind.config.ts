@@ -11,6 +11,11 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        gray:"var(--gray)",
+        softGray:"var(--softGray)",
+        hoverGray:"var(--hoverGray)",
+        softBlack:"var(--softBlack)",
+        secondSoftGray:"var(--secondSoftGray)",
       },
     },
   },
