@@ -1,16 +1,10 @@
 import Image from "next/image";
-import { HeaderTabs } from "./header-tabs";
+
 import { UserAccount } from "./user-account";
-import { Tab } from "../types/header.types";
-import { Stays } from "./stays";
-import { Experiences } from "./experiences";
+
+import { HeaderTabs } from "./header-tabs";
 
 const Header = () => {
-  const tabs: Tab[] = [
-    { label: "Stays", content: <Stays /> },
-    { label: "Experiences", content: <Experiences /> },
-  ];
-
   return (
     <div className="header w-full h-40 flex items-start justify-between mt-3 mx-auto pl-4 pr-4">
       {/* logo */}
@@ -23,7 +17,7 @@ const Header = () => {
       />
 
       {/* navbar */}
-      <HeaderTabs tabs={tabs} />
+      <HeaderTabs />
 
       {/* user account */}
       <UserAccount />
