@@ -1,12 +1,11 @@
 .rmdp-day-picker {
-  @apply flex flex-row w-[900px] gap-[55px] !important;
+  @apply w-full !important;
 }
 .rmdp-day-picker > div {
   @apply w-full !important;
 }
 .rmdp-shadow {
-  @apply p-6 rounded-[35px] !important;
-
+  @apply min-w-60 absolute top-14  p-6 rounded-[35px] !important;
 }
 .rmdp-ep-arrow {
   @apply hidden !important;
@@ -31,4 +30,6 @@
 
 .rmdp-border-bottom {
   @apply border-b-0 !important ;
-}
+} 
+
+

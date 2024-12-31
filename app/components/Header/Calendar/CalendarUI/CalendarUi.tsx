@@ -1,29 +1,61 @@
 'use client';
 
 import React, { useState } from 'react';
-import DatePicker from 'react-multi-date-picker';
+import { Calendar } from 'react-multi-date-picker';
 import { CalendarFooter } from '../Footer/CalendarFooter';
 
-export const CalendarUi = () => {
-    const [value, setValue] = useState([]);
-    return (
-        <div className="w-full justify-center bg-slate-500">
-            <DatePicker
-                value={value}
-                onChange={setValue}
-                range
-                rangeHover
-                numberOfMonths={2}
-                monthYearSeparator=" "
-                highlightToday={false}
-                placeholder="click to open"
-                containerStyle={{ width: '100%' }}
-                style={{ width: '100% !important' }}
-                minDate={new Date()}
-                plugins={[
-                    <CalendarFooter key="customFooter" position="bottom" />,
-                ]}
-            />
-        </div>
-    );
+interface CalendarProps {
+  onDateSelect: (dates: {
+    checkIn: { day: number; month: number; year: number };
+    checkOut: { day: number; month: number; year: number };
+  } | null) => void;
 }
+
+export const CalendarUi: React.FC<CalendarProps> = ({ onDateSelect }) => {
+  const [value, setValue] = useState<any[]>([]);
+
+  const handleCalendarChange = (selectedDates: any[]) => {
+    setValue(selectedDates);
+
+    if (!selectedDates || selectedDates.length === 0) {
+      return;
+    }
+
+    const [firstDate] = selectedDates;
+    const lastDate = selectedDates[selectedDates.length - 1];
+
+    onDateSelect({
+      checkIn: {
+        day: firstDate.day,
+        month: firstDate.month,
+        year: firstDate.year,
+      },
+      checkOut: {
+        day: lastDate.day,
+        month: lastDate.month,
+        year: lastDate.year,
+      },
+    });
+  };
+
+  return (
+    <div className="w-full bg-slate-500 justify-center">
+      <Calendar
+        value={value}
+        onChange={handleCalendarChange}
+        rangeHover
+        range
+        numberOfMonths={2}
+        monthYearSeparator=" "
+        containerStyle={{ width: '100%', position: 'relative' }}
+        style={{ width: '100%' }}
+        onlyShowInRangeDates
+        minDate={new Date()}
+        plugins={[
+          // Custom footer
+          <CalendarFooter key="customFooter" position="bottom" />,
+        ]}
+      />
+    </div>
+  );
+};
