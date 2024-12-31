@@ -30,6 +30,26 @@ export const ScrollableNav: React.FC<ScrollableNavProps> = ({
     }
   }, [showScrollThreshold]);
 
+  const handlePrevClick = () => {
+    const container = scrollContainerRef.current;
+    if (container) {
+      container.scrollTo({
+        left: container.scrollLeft - container.offsetWidth,
+        behavior: "smooth",
+      });
+    }
+  };
+
+  const handleNextClick = () => {
+    const container = scrollContainerRef.current;
+    if (container) {
+      container.scrollTo({
+        left: container.scrollLeft + container.offsetWidth,
+        behavior: "smooth",
+      });
+    }
+  };
+
   useEffect(() => {
     const container = scrollContainerRef.current;
     if (container) {
@@ -44,12 +64,13 @@ export const ScrollableNav: React.FC<ScrollableNavProps> = ({
   }, [handleScroll]);
 
   return (
-    <div className="flex items-center overflow-x-auto whitespace-nowrap ">
+    <div className="relative flex items-center overflow-x-auto whitespace-nowrap ">
       {showPrevButton && (
-        <ScrollBtn show={showPrevButton}>
+        <ScrollBtn show={showPrevButton} onClick={handlePrevClick}>
           <PrevIcon />
         </ScrollBtn>
       )}
+
       <div
         className="overflow-x-auto whitespace-nowrap flex items-center gap-8 no-scrollbar"
         ref={scrollContainerRef}
@@ -72,7 +93,11 @@ export const ScrollableNav: React.FC<ScrollableNavProps> = ({
           </Link>
         ))}
         {showNextButton && (
-          <ScrollBtn show={showNextButton} className="right-48">
+          <ScrollBtn
+            show={showNextButton}
+            className="right-0"
+            onClick={handleNextClick}
+          >
             <NextIcon />
           </ScrollBtn>
         )}
