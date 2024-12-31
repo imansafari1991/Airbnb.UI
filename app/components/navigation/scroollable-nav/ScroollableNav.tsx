@@ -7,18 +7,17 @@ import Image from "next/image";
 import Link from "next/link";
 import type React from "react";
 import { ScrollBtn } from "../scrool-btn";
+import type { ScroollableNavProps } from "./ScroollableNav.types";
 import { categories } from "@/app/components/navigation/constants/categories";
 
-interface ScrollableNavProps {
-  showScrollThreshold?: number;
-}
-
-export const ScrollableNav: React.FC<ScrollableNavProps> = ({
+export const ScrollableNav: React.FC<ScroollableNavProps> = ({
   showScrollThreshold = 40,
 }) => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [showPrevButton, setShowPrevButton] = useState(false);
   const [showNextButton, setShowNextButton] = useState(false);
+
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
   const handleScroll = useCallback(() => {
     const container = scrollContainerRef.current;
@@ -50,6 +49,10 @@ export const ScrollableNav: React.FC<ScrollableNavProps> = ({
     }
   };
 
+  const handleCategoryClick = (id: string) => {
+    setSelectedCategory(id);
+  };
+
   useEffect(() => {
     const container = scrollContainerRef.current;
     if (container) {
@@ -64,7 +67,7 @@ export const ScrollableNav: React.FC<ScrollableNavProps> = ({
   }, [handleScroll]);
 
   return (
-    <div className="relative flex items-center overflow-x-auto whitespace-nowrap ">
+    <div className="relative flex items-center overflow-x-auto whitespace-nowrap">
       {showPrevButton && (
         <ScrollBtn show={showPrevButton} onClick={handlePrevClick}>
           <PrevIcon />
@@ -79,7 +82,12 @@ export const ScrollableNav: React.FC<ScrollableNavProps> = ({
           <Link
             key={category.id}
             href={category.href}
-            className="flex flex-col items-center gap-2 py-3 mt-3 text-gray text-xs font-medium hover:text-black transition-all border-b-2 border-transparent hover:border-softGray"
+            onClick={() => handleCategoryClick(category.id.toString())}
+            className={`flex flex-col items-center gap-2 py-3 mt-3 text-gray text-xs font-medium hover:text-black transition-all  ${
+              selectedCategory === category.id.toString()
+                ? "border-b-2 border-black"
+                : "border-b-2 border-transparent hover:border-softGray"
+            }`}
           >
             {category.icon && (
               <Image
@@ -92,10 +100,11 @@ export const ScrollableNav: React.FC<ScrollableNavProps> = ({
             <div>{category.name}</div>
           </Link>
         ))}
+
         {showNextButton && (
           <ScrollBtn
             show={showNextButton}
-            className="right-0"
+            className="absolute right-0 top-1/2 transform -translate-y-1/2"
             onClick={handleNextClick}
           >
             <NextIcon />
