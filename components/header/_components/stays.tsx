@@ -109,9 +109,9 @@ export const Stays: React.FC = () => {
   );
 
   const handleDateSelect = (selected: {
-    checkIn: { day: number; month: any; year: number };
-    checkOut: { day: number; month: any; year: number };
-  }) => {
+    checkIn: { day: number; month: { name: string; shortName: string; number: number }; year: number };
+    checkOut: { day: number; month: { name: string; shortName: string; number: number }; year: number };
+  } | null) => {
     if (!selected) return;
     setDates(selected);
 

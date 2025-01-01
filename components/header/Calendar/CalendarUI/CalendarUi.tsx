@@ -40,13 +40,10 @@ export const CalendarUi: React.FC<CalendarProps> = ({ onDateSelect }) => {
         range
         numberOfMonths={2}
         monthYearSeparator=" "
-        containerStyle={{ width: '100%', position: 'relative' }}
-        style={{ width: '100%' }}
-        onlyShowInRangeDates
         minDate={new Date()}
         plugins={[
           // Custom footer
-          <CalendarFooter key="customFooter" position="bottom" />,
+          <CalendarFooter key="customFooter" />,
         ]}
       />
     </div>
