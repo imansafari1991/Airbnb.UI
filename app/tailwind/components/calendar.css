@@ -1,0 +1,35 @@
+.rmdp-day-picker {
+  @apply w-full !important;
+}
+.rmdp-day-picker > div {
+  @apply w-full !important;
+}
+.rmdp-shadow {
+  @apply min-w-60 absolute top-14  p-6 rounded-[35px] !important;
+}
+.rmdp-ep-arrow {
+  @apply hidden !important;
+}
+.rmdp-header-values > span {
+  @apply text-base font-semibold leading-[1.2] mt-[0.67em] mb-[0.67em] text-left !important;
+}
+.rmdp-header-values span {
+  @apply pl-[1px] !important;
+}
+.rmdp-week > div {
+  @apply text-[#6A6A6A] font-semibold !important;
+}
+
+.rmdp-arrow {
+  @apply inline-block border-r-2 border-b-2 border-[#6A6A6A] h-[9px] w-[9px] p-[2px] !important;
+}
+
+.rmdp-wrapper {
+  @apply rounded-[30px] !important ;
+}
+
+.rmdp-border-bottom {
+  @apply border-b-0 !important ;
+} 
+
+
