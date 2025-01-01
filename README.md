@@ -32,47 +32,51 @@ npm start
 Outline the structure of the project and any rules for organizing files and directories.
 
 ```
-/app
-   /feature (Next.js App Router folders)
- /components
-   /common (shared components)
-   /feature-specific
- /hooks
- /utils
- /types
- /services (API calls)
- /config (constants and environment variables)
- /styles
+app
+|
+├── feature                   # Next.js App Router folders
+│   ├── page.tsx              # Feature page
+│   └── layout.tsx            # Layout specific to the feature
+|
+components
+|
+├── common                    # Shared components
+│   ├── Button.tsx            # Reusable button component
+│   └── Header.tsx            # Common header component
+|
+├── feature-specific          # Components specific to the feature
+│   ├── Card.tsx              # Feature-specific card component
+│   └── List.tsx              # Feature-specific list component
+|
+hooks
+|
+├── useAuth.ts                # Custom hooks for authentication
+└── useFeatureData.ts         # Custom hook for feature-related data
+|
+utils
+|
+└── formatDate.ts             # Helper function for date formatting
+|
+types
+|
+├── user.ts                   # Type definitions for user entities
+└── feature.ts                # Type definitions for feature-specific data
+|
+services                      # API calls
+|
+├── api.ts                    # Axios or Fetch wrapper for API calls
+└── featureService.ts         # API calls specific to the feature
+|
+config                        # Constants and environment variables
+|
+└── env.ts                    # Environment-specific configurations
+|
+styles
+|
+├── globals.css               # Global CSS styles
+└── variables.css             # CSS variables and design tokens
 ```
-### Example
-```
-/app
-    /dashboard
-      page.tsx       # Dashboard page
-      layout.tsx     # Layout specific to the dashboard
-  /components
-    /common
-      Button.tsx
-      Header.tsx
-    /dashboard
-      Chart.tsx
-      Table.tsx
-  /hooks
-    useAuth.ts       # Custom hooks
-  /services
-    api.ts           # Axios or Fetch wrapper
-    auth.ts          # Auth-related API calls
-  /types
-    user.ts          # Type definitions
-    api.ts
-  /utils
-    formatDate.ts    # Helper functions
-  /styles
-    globals.css
-    variables.css
-  /config
-    env.ts           # Configuration and constants
-```
+
 
 ## Contributing
 Guidelines for contributing to the project.
