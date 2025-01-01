@@ -8,7 +8,7 @@ export default function Home() {
       <header className="w-full">
         <Header />
       </header>
-      <main className="flex flex-col items-center justify-center w-full">
+      <main className="flex flex-col items-center justify-center w-full mt-40">
         <NavigationTag />
         <ListCard />
       </main>
