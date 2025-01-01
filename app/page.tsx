@@ -1,6 +1,7 @@
 import Header from "./components/header/Header";
 import NavigationTag from "./components/navigation/NavigationTag";
 import ListCard from "./components/list/ListCard";
+import PriceRange from "./components/price-range/PriceRange";
 
 export default function Home() {
   return (
