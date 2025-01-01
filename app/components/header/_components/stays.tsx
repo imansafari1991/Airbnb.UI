@@ -3,7 +3,7 @@ import { RxCross1 } from "react-icons/rx";
 import { useState, useRef, useEffect, useCallback } from "react";
 import { CiSearch } from "react-icons/ci";
 import GuestPart from "./GuestPart";
-import { CalendarUi } from "../Calendar/CalendarUI/CalendarUi";
+import { CalendarUi } from "../calendar/calendarUI/CalendarUi";
 
 interface DateValue {
   day: number;
@@ -93,43 +93,34 @@ export const Stays: React.FC = () => {
       : fullDisplayText
     : "Add guests";
 
-  // ------------------ CALENDAR LOGIC ------------------
-
   // Toggle between showing CheckIn / CheckOut calendar
   const handleToggleCalendar = useCallback(
     (event: React.MouseEvent, calendar: "checkIn" | "checkOut") => {
       event.stopPropagation();
       if (calendar === "checkIn") {
         setShowCheckInCalendar((prev) => !prev);
-        // بستن تقویم CheckOut در صورت نیاز
         setShowCheckOutCalendar(false);
       } else {
         setShowCheckOutCalendar((prev) => !prev);
-        // بستن تقویم CheckIn در صورت نیاز
         setShowCheckInCalendar(false);
       }
     },
     []
   );
 
-  // دریافت تاریخ‌های انتخابی از فرزند CalendarUi
   const handleDateSelect = (selected: {
     checkIn: { day: number; month: any; year: number };
     checkOut: { day: number; month: any; year: number };
   }) => {
-    // مثلاً:
-    // { checkIn: { day: 12, month: {...}, year: 2024 }, checkOut: {...} }
     if (!selected) return;
     setDates(selected);
 
-    // بستن تقویم‌ها پس از انتخاب (در صورت نیاز)
     setShowCheckInCalendar(false);
     setShowCheckOutCalendar(false);
   };
 
   return (
     <div className="relative flex items-center justify-between max-w-5xl bg-white rounded-full px-2 py-2 border border-gray-300 shadow-md">
-      {/* GUEST DROPDOWN */}
       {isDropGuest && (
         <div
           className="absolute right-0 top-[67px] bg-white p-4 rounded-[32px] shadow-md max-h-[300px] z-10 overflow-y-auto overscroll-contain"
@@ -172,7 +163,6 @@ export const Stays: React.FC = () => {
         </div>
       )}
 
-      {/* LEFT PART */}
       <div className="flex space-x-4">
         {/* Where */}
         <div className="flex flex-col">
@@ -193,9 +183,7 @@ export const Stays: React.FC = () => {
           onClick={(event) => handleToggleCalendar(event, "checkIn")}
         >
           <span className="text-xs text-gray-500">Check in</span>
-          {/* نمایش تقویم CheckIn به صورت inline */}
           {showCheckInCalendar && <CalendarUi onDateSelect={handleDateSelect} />}
-          {/* تاریخ انتخاب‌شده (در صورت وجود) */}
           <div>
             {dates?.checkIn?.day}
             {dates?.checkIn?.month?.shortName}

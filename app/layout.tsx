@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { CalendarUi } from "./components/Header/Calendar/CalendarUI/CalendarUi";
+import { CalendarUi } from "./components/header/calendar/calendarUI/CalendarUi";
 import "./tailwind/components/calendar.css"
 const geistSans = Geist({
   variable: "--font-geist-sans",

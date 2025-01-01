@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import {Checkout} from "@/app/components/Header/Calendar/Check/checkout";
-import {Checkin} from "@/app/components/Header/Calendar/Check/Checkin";
+import {Checkout} from "@/app/components/header/calendar/checks/checkOut/CheckOut";
+import {Checkin} from "@/app/components/header/calendar/checks/checkIn/CheckIn";
 
 export const Page = () => {
     const [checkinDays, setCheckinDays] = useState<string>();

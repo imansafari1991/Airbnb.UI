@@ -2,14 +2,7 @@
 
 import React, { useState } from 'react';
 import { Calendar } from 'react-multi-date-picker';
-import { CalendarFooter } from '../Footer/CalendarFooter';
-
-interface CalendarProps {
-  onDateSelect: (dates: {
-    checkIn: { day: number; month: number; year: number };
-    checkOut: { day: number; month: number; year: number };
-  } | null) => void;
-}
+import { CalendarFooter } from '../footer/CalendarFooter';
 
 export const CalendarUi: React.FC<CalendarProps> = ({ onDateSelect }) => {
   const [value, setValue] = useState<any[]>([]);
