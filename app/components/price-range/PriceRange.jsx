@@ -1,5 +1,6 @@
+"use client";
 import React, { useState, useEffect } from "react";
-import "./pricerange.css";
+import "./price-range.css";
 
 const PriceRange = () => {
   // component setup
@@ -48,8 +49,8 @@ const PriceRange = () => {
       const maxPercent =
         ((maxVal - sliderMinValue) / (sliderMaxValue - sliderMinValue)) * 100;
 
-      range.style.right = `${minPercent}%`;
-      range.style.left = `${100 - maxPercent}%`;
+      range.style.left = `${minPercent}%`;
+      range.style.right = `${100 - maxPercent}%`;
     }
   };
 
@@ -107,14 +108,14 @@ const PriceRange = () => {
 
   return (
     <>
-      <div className="p-20 bg-white max-w-[600px] w-full mx-auto">
-        <p className="text-2xl text-left py-2 text-gray-700">price range</p>
-        <p className="text-md text-left py-1 text-gray-700">
+      <div className="p-14 bg-white max-w-[600px] w-full mx-auto">
+        <p className="text-[18px] text-left text-[#222222]">price range</p>
+        <p className="text-[14px] text-left pt-2 text-[#222222]">
           Nightly prices before fees and taxes
         </p>
 
         <div className="range-slider my-14">
-          <div className="slider-track h-full absolute bg-[#fe696a] left-0 right-full rounded-md"></div>
+          <div className="slider-track h-full absolute bg-[#E31C5F] left-0 right-full rounded-md"></div>
           <input
             type="range"
             min={sliderMinValue}
@@ -140,18 +141,19 @@ const PriceRange = () => {
             className="max-val"
           />
           {isDragging && (
-            <div className="absolute top-2 text-sm text-[#555] bg-white p-1 border-2 border-black rounded-lg z-10 w-10 left-0">
+            <div className="absolute top-3 text-sm text-[#555] bg-white p-1 border-1 border-black rounded-lg z-10 w-10 right-0">
               {maxVal}
             </div>
           )}
           {isDragging && (
-            <div className="absolute top-2 text-sm text-[#555] bg-white p-1 border-2 border-black rounded-lg z-10 w-10">
+            <div className="absolute top-2 text-sm text-[#555] bg-white p-1 border- border-black rounded-lg z-10 w-10">
               {minVal}
             </div>
           )}
         </div>
         <div className="flex justify-between w-full">
-          <div className="w-auto px-2 py-4 rounded-xl border-1 border-gray-400 bg-white">
+          <div className="w-auto rounded-xl border-1 border-gray-400 bg-white flex flex-col items-center">
+            <label className="text-[#6A6A6A] py-2 text-[12px]">Minimum</label>
             <input
               type="number"
               value={minInput}
@@ -161,7 +163,8 @@ const PriceRange = () => {
               max={maxVal - minGap}
             />
           </div>
-          <div className="w-auto px-2 py-4 rounded-xl border-1 border-gray-400 bg-white">
+          <div className="w-auto rounded-xl border-1 border-gray-400 bg-white flex flex-col items-center ">
+            <label className="text-[#6A6A6A] py-2 text-[12px]">Maximum</label>
             <input
               type="number"
               value={maxInput}
