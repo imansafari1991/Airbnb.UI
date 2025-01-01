@@ -7,19 +7,19 @@ import { IoIosMenu } from "react-icons/io";
 export const UserDropDown: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const modalRef = useRef<HTMLDivElement | null>(null);
-  const buttonRef = useRef<HTMLButtonElement | null>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  // const modalRef = useRef<HTMLDivElement | null>(null);
+  // const buttonRef = useRef<HTMLButtonElement | null>(null);
 
   const handleModalToggle = () => {
     setIsModalOpen((prev) => !prev);
   };
 
-  const handleClickOutside = (e: MouseEvent) => {
+  const handleClickOutside = (event: MouseEvent) => {
     if (
-      modalRef.current &&
-      !modalRef.current.contains(e.target as Node) &&
-      buttonRef.current &&
-      !buttonRef.current.contains(e.target as Node)
+      dropdownRef.current &&
+      !dropdownRef.current.contains(event.target as Node)
     ) {
       setIsModalOpen(false);
     }
@@ -38,10 +38,9 @@ export const UserDropDown: React.FC = () => {
   }, [isModalOpen]);
 
   return (
-    <div className="relative inline-block">
+    <div className="relative inline-block" ref={dropdownRef}>
       {/* User Account Button */}
       <button
-        ref={buttonRef} // Correct reference type for <button>
         onClick={handleModalToggle}
         className="flex justify-between items-center gap-4 cursor-pointer rounded-full shadow-sm p-2 border-2 hover:shadow-md relative"
       >
@@ -51,13 +50,40 @@ export const UserDropDown: React.FC = () => {
 
       {/* Modal */}
       {isModalOpen && (
-        <div
-          ref={modalRef} // Correct reference type for <div>
-          className="absolute top-full mt-2 right-0 bg-white rounded-lg p-6 w-80 shadow-lg border border-gray-200 z-50"
-        >
-          {/* Account Information */}
-
-          <p>user account info</p>
+        <div className="absolute right-0 mt-2 w-56 bg-white border rounded-lg shadow-lg z-50">
+          <ul className="py-1 text-gray-700 ">
+            <li>
+              <button className="block px-4 py-3 hover:bg-gray-100 w-full text-left">
+                Sign up
+              </button>
+            </li>
+            <li>
+              <button className="block px-4 py-3 hover:bg-gray-100 w-full text-left">
+                Log in
+              </button>
+            </li>
+            <hr className="my-1" />
+            <li>
+              <button className="block px-4 py-3 hover:bg-gray-100 w-full text-left">
+                Gift cards
+              </button>
+            </li>
+            <li>
+              <button className="block px-4 py-3 hover:bg-gray-100 w-full text-left">
+                Airbnb your home
+              </button>
+            </li>
+            <li>
+              <button className="block px-4 py-3 hover:bg-gray-100 w-full text-left">
+                Host an experience
+              </button>
+            </li>
+            <li>
+              <button className="block px-4 py-3 hover:bg-gray-100 w-full text-left">
+                Help
+              </button>
+            </li>
+          </ul>
         </div>
       )}
     </div>

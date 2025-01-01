@@ -16,7 +16,6 @@ export const UserAccount: React.FC = () => {
 
       {/* user drop down */}
       <div>
-        {/* <UserDropDown /> */}
         <UserDropDown />
       </div>
     </div>
