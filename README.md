@@ -44,6 +44,35 @@ Outline the structure of the project and any rules for organizing files and dire
  /config (constants and environment variables)
  /styles
 ```
+### Example
+```
+/app
+    /dashboard
+      page.tsx       # Dashboard page
+      layout.tsx     # Layout specific to the dashboard
+  /components
+    /common
+      Button.tsx
+      Header.tsx
+    /dashboard
+      Chart.tsx
+      Table.tsx
+  /hooks
+    useAuth.ts       # Custom hooks
+  /services
+    api.ts           # Axios or Fetch wrapper
+    auth.ts          # Auth-related API calls
+  /types
+    user.ts          # Type definitions
+    api.ts
+  /utils
+    formatDate.ts    # Helper functions
+  /styles
+    globals.css
+    variables.css
+  /config
+    env.ts           # Configuration and constants
+```
 
 ## Contributing
 Guidelines for contributing to the project.
