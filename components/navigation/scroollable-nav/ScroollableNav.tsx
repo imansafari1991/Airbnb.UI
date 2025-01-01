@@ -1,6 +1,6 @@
 "use client";
 
-import { NextIcon, PrevIcon } from "@/app/components/navigation/icons";
+import { NextIcon, PrevIcon } from "@/components/navigation/icons";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 import Image from "next/image";
@@ -8,7 +8,7 @@ import Link from "next/link";
 import type React from "react";
 import { ScrollBtn } from "../scrool-btn";
 import type { ScroollableNavProps } from "./ScroollableNav.types";
-import { categories } from "@/app/components/navigation/constants/categories";
+import { categories } from "@/components/navigation/constants/categories";
 
 export const ScrollableNav: React.FC<ScroollableNavProps> = ({
   showScrollThreshold = 40,

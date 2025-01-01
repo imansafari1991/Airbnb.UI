@@ -1,5 +1,5 @@
 import { FilterBtn } from "./filter-btn";
-import { FilterIcon } from "@/app/components/navigation/icons";
+import { FilterIcon } from "@/components/navigation/icons";
 import type React from "react";
 import { ScrollableNav } from "./scroollable-nav/ScroollableNav";
 

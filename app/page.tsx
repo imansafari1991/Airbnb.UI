@@ -1,6 +1,6 @@
-import Header from "./components/header/_components/Header";
-import NavigationTag from "./components/navigation/NavigationTag";
-import ListCard from "./components/list/ListCard";
+import Header from "../components/header/_components/Header";
+import NavigationTag from "../components/navigation/NavigationTag";
+import ListCard from "../components/list/ListCard";
 
 export default function Home() {
   return (
