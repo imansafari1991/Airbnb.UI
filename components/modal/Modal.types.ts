@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 
 export interface IModalProps {
-  open: boolean;
+  isOpen: boolean;
   children: ReactNode;
   onClose?: () => void;
   className?: string;

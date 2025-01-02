@@ -1,43 +1,54 @@
+"use client";
+
+import classNames from "classnames";
 import { createPortal } from "react-dom";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { IModalProps } from "./Modal.types";
-import { twMerge } from "tailwind-merge";
 
 export const Modal: React.FC<IModalProps> = ({
   children,
-  open,
+  isOpen,
   className,
   onClose,
 }) => {
-  const [shouldShowModal, setShouldShowModal] = useState(open);
+  const [shouldShowModal, setShouldShowModal] = useState(isOpen);
   const modalRef = useRef<HTMLDivElement | null>(null);
 
+  useEffect(() => {
+    if (isOpen) {
+      setShouldShowModal(true);
+    } else {
+      const timeout = setTimeout(() => setShouldShowModal(false), 300); // تاخیر برای بستن
+      return () => clearTimeout(timeout); // پاک کردن تایمر
+    }
+  }, [isOpen]);
+
   // if shouldShowModal is false ==> return null to show nothing;
-  if (shouldShowModal) return null;
+  if (!shouldShowModal) return null;
 
   return createPortal(
     <div
-      className={twMerge(
+      className={classNames(
         "modal",
-        open ? "animate-fade-in" : "animate-fade-out"
+        isOpen ? "animate-fade-in" : "animate-fade-out"
       )}
     >
       {/* background overlay blue effect */}
       <div
         onClick={onClose}
-        className={twMerge(
+        className={classNames(
           "modal-overlay",
-          open ? "animate-fade-in" : "animate-fade-out"
+          isOpen ? "animate-fade-in" : "animate-fade-out"
         )}
       />
 
       {/* modal's content container */}
       <div
         ref={modalRef}
-        className={twMerge(
+        className={classNames(
           "modal-container",
-          open ? "animate-fade-in" : "animate-fade-out",
+          isOpen ? "animate-fade-in" : "animate-fade-out",
           className // for custom classes
         )}
       >
