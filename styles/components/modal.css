@@ -1,0 +1,11 @@
+.modal {
+  @apply fixed inset-0 flex items-center justify-center transition-opacity border border-black;
+
+  &-overlay {
+    @apply fixed inset-0 bg-black bg-opacity-50 backdrop-blur-3xl transition-opacity;
+  }
+
+  &-container {
+    @apply shadow-lg transform rounded-lg bg-white transition-transform duration-300;
+  }
+}
