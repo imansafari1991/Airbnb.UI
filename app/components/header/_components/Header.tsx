@@ -7,21 +7,40 @@ import { UserAccount } from "./user-account";
 import { HeaderTabs } from "./header-tabs";
 import { useEffect, useState } from "react";
 import { HeaderScrolledSearch } from "./header-scrolled-search";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [showFirstComponent, setshowFirstComponent] = useState(true);
 
   // Monitor scroll position
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     if (window.scrollY > 50) {
+  //       setIsScrolled(true);
+  //     } else {
+  //       setIsScrolled(false);
+  //     }
+  //   };
+
+  //   window.addEventListener("scroll", handleScroll);
+  //   return () => {
+  //     window.removeEventListener("scroll", handleScroll);
+  //   };
+  // }, []);
+
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScrolled(true);
+      const scrollY = window.scrollY;
+      if (scrollY > 50) {
+        setshowFirstComponent(false);
       } else {
-        setIsScrolled(false);
+        setshowFirstComponent(true);
       }
     };
 
     window.addEventListener("scroll", handleScroll);
+
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
@@ -40,9 +59,33 @@ const Header = () => {
 
       {/* navbar */}
       {/* <HeaderTabs /> */}
-      <div className="bg-white">
+      {/* <div className="bg-white">
         {isScrolled ? <HeaderScrolledSearch /> : <HeaderTabs />}
-      </div>
+      </div> */}
+
+      <AnimatePresence mode="wait">
+        {showFirstComponent ? (
+          <motion.div
+            key="HeaderTabs"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
+            transition={{ duration: 0.3 }}
+          >
+            <HeaderTabs />
+          </motion.div>
+        ) : (
+          <motion.div
+            key="HeaderScrolledSearch"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
+            transition={{ duration: 0.3 }}
+          >
+            <HeaderScrolledSearch />
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* user account */}
       <UserAccount />
