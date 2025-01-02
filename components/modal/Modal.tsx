@@ -5,6 +5,7 @@ import { createPortal } from "react-dom";
 
 import { useEffect, useRef, useState } from "react";
 import { IModalProps } from "./Modal.types";
+import useClickOutside from "@/hooks/useClickOutSide";
 
 export const Modal: React.FC<IModalProps> = ({
   children,
@@ -13,7 +14,12 @@ export const Modal: React.FC<IModalProps> = ({
   onClose,
 }) => {
   const [shouldShowModal, setShouldShowModal] = useState(isOpen);
-  const modalRef = useRef<HTMLDivElement | null>(null);
+  const modalRef = useRef<HTMLDivElement>(null);
+
+  // click outside the modal
+  useClickOutside(modalRef, {
+    onOutsideClick: () => onClose && onClose(),
+  });
 
   useEffect(() => {
     if (isOpen) {

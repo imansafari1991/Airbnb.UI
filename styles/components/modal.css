@@ -1,11 +1,19 @@
 .modal {
-  @apply fixed inset-0 flex items-center justify-center transition-opacity border border-black;
+  @apply fixed inset-0 flex items-center justify-center transition-opacity;
 
   &-overlay {
     @apply fixed inset-0 bg-black bg-opacity-50 backdrop-blur-3xl transition-opacity;
   }
 
   &-container {
-    @apply shadow-lg transform rounded-lg bg-white transition-transform duration-300;
+    @apply shadow-lg transform rounded-lg bg-white transition-transform duration-300 min-w-[40px] max-h-[600px] overflow-auto overflow-x-hidden;
+  }
+
+  &-header {
+    @apply flex items-center justify-center border-b border-softGray px-6 min-h-16 top-0 sticky bg-white;
+
+    &-title {
+      @apply text-base text-center font-semibold text-softBlack;
+    }
   }
 }

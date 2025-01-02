@@ -6,3 +6,8 @@ export interface IModalProps {
   onClose?: () => void;
   className?: string;
 }
+
+export interface IModalHeaderProps {
+  title: string;
+  onClose: () => void;
+}
