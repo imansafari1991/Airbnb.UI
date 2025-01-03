@@ -1,12 +1,64 @@
+/** @format */
+
 "use client";
 
-import { useState } from "react";
+import { useCallback, useState } from "react";
+import { CalendarUi } from "../calendar/calendar-ui/CalendarUi";
+
+interface DateValue {
+  day: number;
+  month: { name: string; shortName: string; number: number };
+  year: number;
+}
+
+interface CheckInOutValues {
+  checkIn: DateValue | null;
+  checkOut: DateValue | null;
+}
 
 export const HeaderTabs: React.FC = () => {
   const [activeTab, setActiveTab] = useState<"Stays" | "Experiences">("Stays");
 
   const handleTabChange = (tab: "Stays" | "Experiences") => {
     setActiveTab(tab);
+  };
+
+  // Calendar states
+  const [showCheckInCalendar, setShowCheckInCalendar] =
+    useState<boolean>(false);
+  const [showCheckOutCalendar, setShowCheckOutCalendar] =
+    useState<boolean>(false);
+
+  // Selected dates
+  const [dates, setDates] = useState<CheckInOutValues>({
+    checkIn: null,
+    checkOut: null,
+  });
+
+  // Toggle between showing CheckIn / CheckOut calendar
+  const handleToggleCalendar = useCallback(
+    (event: React.MouseEvent, calendar: "checkIn" | "checkOut") => {
+      event.stopPropagation();
+      if (calendar === "checkIn") {
+        setShowCheckInCalendar((prev) => !prev);
+        setShowCheckOutCalendar(false);
+      } else {
+        setShowCheckOutCalendar((prev) => !prev);
+        setShowCheckInCalendar(false);
+      }
+    },
+    []
+  );
+
+  const handleDateSelect = (selected: {
+    checkIn: { day: number; month: any; year: number };
+    checkOut: { day: number; month: any; year: number };
+  }) => {
+    if (!selected) return;
+    setDates(selected);
+
+    setShowCheckInCalendar(false);
+    setShowCheckOutCalendar(false);
   };
   return (
     <div className="flex flex-col justify-center items-center fixed top-10 left-1/2 transform -translate-x-1/2 w-full">
@@ -48,28 +100,39 @@ export const HeaderTabs: React.FC = () => {
 
             <li className="w-[33%] h-full flex items-start justify-center hover:rounded-full rounded-full hover:border-none">
               <div className="w-1/2 h-full p-2 hover:rounded-full hover:bg-gray-300 hover:border-none">
-                <div className="w-full pl-2 border-l border-gray-300">
-                  <span className="text-neutral text-xs font-semibold">
-                    Check-in
+                <div
+                  className="p-2 flex flex-col justify-center items-start"
+                  onClick={(event) => handleToggleCalendar(event, "checkIn")}
+                >
+                  <span className="text-xs text-gray-500">Check in</span>
+                  {showCheckInCalendar && (
+                    <CalendarUi onDateSelect={handleDateSelect} />
+                  )}
+                  <span className="bg-transparent focus:outline-none text-sm text-slate-600">
+                    {dates?.checkIn
+                      ? `${dates?.checkIn?.day} ${dates?.checkIn?.month?.shortName}`
+                      : "add dates"}
                   </span>
-                  <input
-                    type="text"
-                    placeholder="Add Dates"
-                    className="bg-transparent focus:outline-none text-sm"
-                  />
                 </div>
               </div>
 
               <div className="w-1/2 h-full p-2 hover:rounded-full hover:bg-gray-300 hover:border-none">
                 <div className="w-full pl-2 border-l border-gray-300">
-                  <span className="text-neutral text-xs font-semibold">
-                    Check-out
-                  </span>
-                  <input
-                    type="text"
-                    placeholder="Add Dates"
-                    className="bg-transparent focus:outline-none text-sm"
-                  />
+                  <div
+                    className="p-2 flex flex-col justify-center items-start"
+                    onClick={(event) => handleToggleCalendar(event, "checkOut")}
+                  >
+                    <span className="text-xs text-gray-500">Check out</span>
+                    {showCheckOutCalendar && (
+                      <CalendarUi onDateSelect={handleDateSelect} />
+                    )}
+
+                    <span className="bg-transparent focus:outline-none text-sm text-slate-600">
+                      {dates?.checkOut
+                        ? `${dates?.checkOut?.day} ${dates?.checkOut?.month?.shortName}`
+                        : "add dates"}
+                    </span>
+                  </div>
                 </div>
               </div>
             </li>

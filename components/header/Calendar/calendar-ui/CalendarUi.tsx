@@ -1,8 +1,10 @@
-'use client';
+/** @format */
 
-import React, { useState } from 'react';
-import { Calendar } from 'react-multi-date-picker';
-import { CalendarFooter } from '../footer/CalendarFooter';
+"use client";
+
+import React, { useState } from "react";
+import { Calendar } from "react-multi-date-picker";
+import { CalendarFooter } from "../footer/CalendarFooter";
 
 export const CalendarUi: React.FC<CalendarProps> = ({ onDateSelect }) => {
   const [value, setValue] = useState<any[]>([]);
@@ -36,11 +38,10 @@ export const CalendarUi: React.FC<CalendarProps> = ({ onDateSelect }) => {
       <Calendar
         value={value}
         onChange={handleCalendarChange}
-        rangeHover
-        range
         numberOfMonths={2}
         monthYearSeparator=" "
         minDate={new Date()}
+        multiple={false}
         plugins={[
           // Custom footer
           <CalendarFooter key="customFooter" />,
