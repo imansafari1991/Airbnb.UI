@@ -44,8 +44,6 @@
   @apply text-slate-300 !important;
 }
 
-.rmdp-day.rmdp-today span {
-}
 .rmdp-day :hover {
   @apply bg-black !important;
 }
@@ -53,4 +51,7 @@
 .rmdp-day.rmdp-selected span,
 .rmdp-day.rmdp-today span {
   @apply bg-black !important;
+}
+.rmdp-day.rmdp-today:not(.rmdp-selected) span {
+  @apply bg-transparent text-[unset] !important;
 }

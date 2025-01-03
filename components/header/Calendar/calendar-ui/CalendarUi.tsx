@@ -6,18 +6,26 @@ import React, { useState } from "react";
 import { Calendar } from "react-multi-date-picker";
 import { CalendarFooter } from "../footer/CalendarFooter";
 
-export const CalendarUi: React.FC<CalendarProps> = ({ onDateSelect }) => {
+export const CalendarUi: React.FC<CalendarProps> = ({
+  activeTab,
+  onDateSelect,
+}) => {
   const [value, setValue] = useState<any[]>([]);
 
   const handleCalendarChange = (selectedDates: any[]) => {
-    setValue(selectedDates);
+    const newValue = selectedDates.slice(-2);
 
-    if (!selectedDates || selectedDates.length === 0) {
+    setValue(newValue);
+
+    if (!newValue || newValue.length === 0) {
       return;
     }
 
-    const [firstDate] = selectedDates;
-    const lastDate = selectedDates[selectedDates.length - 1];
+    const [firstDate] = newValue;
+    const lastDate = newValue[newValue.length - 1];
+
+    if (activeTab === "Experiences") {
+    }
 
     onDateSelect({
       checkIn: {

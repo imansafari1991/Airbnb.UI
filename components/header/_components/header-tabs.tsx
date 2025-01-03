@@ -106,7 +106,10 @@ export const HeaderTabs: React.FC = () => {
                 >
                   <span className="text-xs text-gray-500">Check in</span>
                   {showCheckInCalendar && (
-                    <CalendarUi onDateSelect={handleDateSelect} />
+                    <CalendarUi
+                      activeTab={activeTab}
+                      onDateSelect={handleDateSelect}
+                    />
                   )}
                   <span className="bg-transparent focus:outline-none text-sm text-slate-600">
                     {dates?.checkIn
@@ -166,16 +169,21 @@ export const HeaderTabs: React.FC = () => {
 
             <li className="w-[33%] h-full flex items-start justify-start hover:bg-gray-300 hover:rounded-full hover:border-none pt-1">
               <div className="p-2">
-                <div className="flex flex-col justify-start items-start pl-2 border-l border-gray-300">
-                  <span className="text-neutral text-xs font-semibold">
-                    Date
+                <div
+                  className="p-2 flex flex-col justify-center items-start"
+                  onClick={(event) => handleToggleCalendar(event, "checkOut")}
+                >
+                  <span className="text-xs text-gray-500">Add dates </span>
+                  {showCheckOutCalendar && (
+                    <CalendarUi onDateSelect={handleDateSelect} />
+                  )}
+
+                  <span className="bg-transparent focus:outline-none text-sm text-slate-600">
+                    {dates.checkIn || dates.checkOut
+                      ? `${dates?.checkIn?.day} ${dates?.checkIn?.month?.shortName} - ${dates?.checkOut?.day} ${dates?.checkOut?.month?.shortName}`
+                      : "add dates"}
                   </span>
-                  <input
-                    type="text"
-                    placeholder="Add Date"
-                    className="bg-transparent focus:outline-none text-sm"
-                  />
-                </div>
+                </div>{" "}
               </div>
             </li>
 
