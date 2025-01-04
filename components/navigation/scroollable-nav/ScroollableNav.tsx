@@ -9,15 +9,16 @@ import type React from "react";
 import { ScrollBtn } from "../scrool-btn";
 import type { ScroollableNavProps } from "./ScroollableNav.types";
 import { categories } from "@/components/navigation/constants/categories";
+import { twMerge } from "tailwind-merge";
 
 export const ScrollableNav: React.FC<ScroollableNavProps> = ({
-  showScrollThreshold = 40,
+  showScrollThreshold = 50,
 }) => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [showPrevButton, setShowPrevButton] = useState(false);
-  const [showNextButton, setShowNextButton] = useState(false);
+  const [showNextButton, setShowNextButton] = useState(true);
 
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<string | null>("1");
 
   const handleScroll = useCallback(() => {
     const container = scrollContainerRef.current;
@@ -67,15 +68,28 @@ export const ScrollableNav: React.FC<ScroollableNavProps> = ({
   }, [handleScroll]);
 
   return (
-    <div className="relative flex items-center overflow-x-auto whitespace-nowrap">
-      {showPrevButton && (
-        <ScrollBtn show={showPrevButton} onClick={handlePrevClick}>
-          <PrevIcon />
-        </ScrollBtn>
-      )}
-
+    <div
+      className={`relative flex items-center overflow-x-auto whitespace-nowrap ${
+        showNextButton ? "" : "pr-8"
+      }`}
+    >
+      <ScrollBtn
+        show={showPrevButton}
+        isPrevButton={true}
+        onClick={handlePrevClick}
+      >
+        <PrevIcon />
+      </ScrollBtn>
+      <ScrollBtn
+        show={showNextButton}
+        isNextButton={true}
+        className="right-0"
+        onClick={handleNextClick}
+      >
+        <NextIcon />
+      </ScrollBtn>
       <div
-        className="overflow-x-auto whitespace-nowrap flex items-center gap-8 no-scrollbar"
+        className="overflow-x-auto whitespace-nowrap flex items-center gap-10 no-scrollbar"
         ref={scrollContainerRef}
       >
         {categories.map((category) => (
@@ -83,10 +97,10 @@ export const ScrollableNav: React.FC<ScroollableNavProps> = ({
             key={category.id}
             href={category.href}
             onClick={() => handleCategoryClick(category.id.toString())}
-            className={`flex flex-col items-center gap-2 py-3 mt-3 text-gray text-xs font-medium hover:text-black transition-all  ${
+            className={`group opacity-90 flex flex-col items-center gap-2 py-3 mt-3 text-xs font-medium transition-all ${
               selectedCategory === category.id.toString()
-                ? "border-b-2 border-black"
-                : "border-b-2 border-transparent hover:border-softGray"
+                ? "border-b-2 border-black text-black"
+                : "border-b-2 border-transparent hover:border-softGray text-gray hover:text-black"
             }`}
           >
             {category.icon && (
@@ -95,21 +109,16 @@ export const ScrollableNav: React.FC<ScroollableNavProps> = ({
                 alt={category.name}
                 width={24}
                 height={24}
+                className={`transition-opacity ${
+                  selectedCategory === category.id.toString()
+                    ? "opacity-100"
+                    : "opacity-60 group-hover:opacity-90"
+                }`}
               />
             )}
-            <div>{category.name}</div>
+            <div className="opacity-100">{category.name}</div>
           </Link>
         ))}
-
-        {showNextButton && (
-          <ScrollBtn
-            show={showNextButton}
-            className="absolute right-0 top-1/2 transform -translate-y-1/2"
-            onClick={handleNextClick}
-          >
-            <NextIcon />
-          </ScrollBtn>
-        )}
       </div>
     </div>
   );

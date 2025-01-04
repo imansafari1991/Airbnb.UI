@@ -5,4 +5,6 @@ export interface IScroollBtnProps
     children: ReactNode | string;
     className?: string;
     show: boolean;
+    isNextButton?: boolean;
+    isPrevButton?: boolean;
 }
