@@ -69,27 +69,28 @@ export const ScrollableNav: React.FC<ScroollableNavProps> = ({
 
   return (
     <div
-      className={`relative flex items-center overflow-x-auto whitespace-nowrap ${
-        showNextButton ? "" : "pr-8"
+      className={`relative flex items-center overflow-x-auto whitespace-nowrap  ${
+        showNextButton ? "" : "pr-0 md:pr-8"
       }`}
     >
       <ScrollBtn
         show={showPrevButton}
         isPrevButton={true}
         onClick={handlePrevClick}
+        className="hidden md:flex"
       >
         <PrevIcon />
       </ScrollBtn>
       <ScrollBtn
         show={showNextButton}
         isNextButton={true}
-        className="right-0"
+        className="right-0 hidden md:flex"
         onClick={handleNextClick}
       >
         <NextIcon />
       </ScrollBtn>
       <div
-        className="overflow-x-auto whitespace-nowrap flex items-center gap-10 no-scrollbar"
+        className="overflow-x-auto whitespace-nowrap flex items-center gap-8 no-scrollbar px-6 md:px-0"
         ref={scrollContainerRef}
       >
         {categories.map((category) => (

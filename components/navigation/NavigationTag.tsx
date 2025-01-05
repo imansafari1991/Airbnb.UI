@@ -5,9 +5,9 @@ import { ScrollableNav } from "./scroollable-nav/ScroollableNav";
 
 const NavigationTag: React.FC = () => {
   return (
-    <nav className="w-screen flex items-center px-0 md:px-10 2xl:px-20 gap-3">
+    <nav className="w-screen flex items-center px-0 md:px-10 2xl:px-20 gap-3 border-gray-300 shadow-md md:border-none pb-0.5">
       <ScrollableNav />
-      <FilterBtn>
+      <FilterBtn className="hidden md:flex items-center">
         <FilterIcon />
         <span>Filters</span>
       </FilterBtn>
