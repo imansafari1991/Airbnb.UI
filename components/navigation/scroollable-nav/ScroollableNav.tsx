@@ -9,7 +9,6 @@ import type React from "react";
 import { ScrollBtn } from "../scrool-btn";
 import type { ScroollableNavProps } from "./ScroollableNav.types";
 import { categories } from "@/components/navigation/constants/categories";
-import { twMerge } from "tailwind-merge";
 
 export const ScrollableNav: React.FC<ScroollableNavProps> = ({
   showScrollThreshold = 50,
@@ -17,7 +16,6 @@ export const ScrollableNav: React.FC<ScroollableNavProps> = ({
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [showPrevButton, setShowPrevButton] = useState(false);
   const [showNextButton, setShowNextButton] = useState(true);
-
   const [selectedCategory, setSelectedCategory] = useState<string | null>("1");
 
   const handleScroll = useCallback(() => {

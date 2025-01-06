@@ -19,7 +19,11 @@ export const ScrollBtn: React.FC<IScroollBtnProps> = ({
       )}
     >
       {isNextButton && (
-        <div className="top-0 right-100 h-full w-8 bg-gradient-to-l from-white/100 to-white/0 pointer-events-none z-10" />
+        <div
+          className={twMerge(
+            "top-0 right-100 h-full w-8 bg-gradient-to-l from-white/100 to-white/0 pointer-events-none z-10"
+          )}
+        />
       )}
 
       <div className={twMerge("z-10	bg-white h-full px-1 flex items-center ")}>
@@ -34,7 +38,11 @@ export const ScrollBtn: React.FC<IScroollBtnProps> = ({
       </div>
 
       {isPrevButton && (
-        <div className="top-0 left-0 h-full w-8 bg-gradient-to-r from-white/100 to-white/0 pointer-events-none z-10" />
+        <div
+          className={twMerge(
+            "top-0 left-0 h-full w-8 bg-gradient-to-r from-white/100 to-white/0 pointer-events-none z-10"
+          )}
+        />
       )}
     </div>
   );
