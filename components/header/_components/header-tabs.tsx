@@ -40,10 +40,10 @@ export const HeaderTabs: React.FC = () => {
     (event: React.MouseEvent, calendar: "checkIn" | "checkOut") => {
       event.stopPropagation();
       if (calendar === "checkIn") {
-        setShowCheckInCalendar((prev) => !prev);
+        setShowCheckInCalendar(true);
         setShowCheckOutCalendar(false);
       } else {
-        setShowCheckOutCalendar((prev) => !prev);
+        setShowCheckOutCalendar(true);
         setShowCheckInCalendar(false);
       }
     },
@@ -127,7 +127,10 @@ export const HeaderTabs: React.FC = () => {
                   >
                     <span className="text-xs text-gray-500">Check out</span>
                     {showCheckOutCalendar && (
-                      <CalendarUi onDateSelect={handleDateSelect} />
+                      <CalendarUi
+                        activeTab={activeTab}
+                        onDateSelect={handleDateSelect}
+                      />
                     )}
 
                     <span className="bg-transparent focus:outline-none text-sm text-slate-600">
@@ -175,12 +178,27 @@ export const HeaderTabs: React.FC = () => {
                 >
                   <span className="text-xs text-gray-500">Add dates </span>
                   {showCheckOutCalendar && (
-                    <CalendarUi onDateSelect={handleDateSelect} />
+                    <CalendarUi
+                      activeTab={activeTab}
+                      onDateSelect={handleDateSelect}
+                    />
                   )}
+
+                  {/* <span className="bg-transparent focus:outline-none text-sm text-slate-600">
+                    {dates.checkIn || dates.checkOut
+                      ? `${dates?.checkIn?.day} ${dates?.checkIn?.month?.shortName} - ${dates?.checkOut?.day} ${dates?.checkOut?.month?.shortName}`
+                      : "add dates"}
+                  </span> */}
 
                   <span className="bg-transparent focus:outline-none text-sm text-slate-600">
                     {dates.checkIn || dates.checkOut
-                      ? `${dates?.checkIn?.day} ${dates?.checkIn?.month?.shortName} - ${dates?.checkOut?.day} ${dates?.checkOut?.month?.shortName}`
+                      ? `${dates?.checkIn?.day} ${
+                          dates?.checkIn?.month?.shortName
+                        } ${
+                          dates?.checkOut
+                            ? `  - ${dates?.checkOut?.day} ${dates?.checkOut?.month?.shortName}`
+                            : ""
+                        }`
                       : "add dates"}
                   </span>
                 </div>{" "}
