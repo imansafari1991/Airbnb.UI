@@ -4,11 +4,12 @@
 
 import React, { useState } from "react";
 import { Calendar } from "react-multi-date-picker";
-import { CalendarFooter } from "../footer/CalendarFooter";
+import { CalendarFooter } from "./CalendarFooter";
+import {CalendarPropsT} from '../types/calendar.types'
 
-export const CalendarUi: React.FC<CalendarProps> = ({
+export const CalendarUi: React.FC<CalendarPropsT> = ({
   activeTab,
-  onDateSelect,
+  onDateSelect
 }) => {
   const [value, setValue] = useState<any[]>([]);
 

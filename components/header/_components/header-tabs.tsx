@@ -3,7 +3,7 @@
 "use client";
 
 import { useCallback, useState } from "react";
-import { CalendarUi } from "../calendar/calendar-ui/CalendarUi";
+import { CalendarUi } from "../Calendar/_components/CalendarUi";
 
 interface DateValue {
   day: number;
