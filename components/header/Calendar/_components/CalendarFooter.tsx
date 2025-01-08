@@ -24,7 +24,7 @@ export const CalendarFooter = () => {
             setBadgeCalendarDay(day[1] === 0 ? null : `±${day[1]}`)
           }
           className={`${
-            badgeCalendarDay === day[1]
+            badgeCalendarDay === (day[1] === 0 ? null : `±${day[1]}`)
               ? "border-[2px] border-black bg-slate-100"
               : "border border-slate-300"
           } cursor-pointer rounded-3xl py-2 px-4 text-center text-sm transition-all shadow-sm text-slate-600`}
