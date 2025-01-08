@@ -2,8 +2,9 @@
 
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useContext, useState } from "react";
 import { CalendarUi } from "../Calendar/_components/CalendarUi";
+import { CalendarContext } from "@/context";
 
 interface DateValue {
   day: number;
@@ -22,6 +23,8 @@ export const HeaderTabs: React.FC = () => {
   const handleTabChange = (tab: "Stays" | "Experiences") => {
     setActiveTab(tab);
   };
+
+  const { badgeCalendarDay } = useContext(CalendarContext);
 
   // Calendar states
   const [showCheckInCalendar, setShowCheckInCalendar] =
@@ -112,9 +115,21 @@ export const HeaderTabs: React.FC = () => {
                     />
                   )}
                   <span className="bg-transparent focus:outline-none text-sm text-slate-600">
-                    {dates?.checkIn
-                      ? `${dates?.checkIn?.day} ${dates?.checkIn?.month?.shortName}`
-                      : "add dates"}
+                    {dates.checkIn ? (
+                      <>
+                        <div className="flex items-center">
+                          <span className="mr-1">
+                            {dates?.checkIn.month.shortName}
+                          </span>
+                          <span> {dates?.checkIn.day}</span>
+                          <span className="flex items-center ml-3">
+                            <span className="text-sm"> {badgeCalendarDay}</span>
+                          </span>
+                        </div>
+                      </>
+                    ) : (
+                      "add dates"
+                    )}
                   </span>
                 </div>
               </div>
@@ -132,12 +147,20 @@ export const HeaderTabs: React.FC = () => {
                         onDateSelect={handleDateSelect}
                       />
                     )}
-
-                    <span className="bg-transparent focus:outline-none text-sm text-slate-600">
-                      {dates?.checkOut
-                        ? `${dates?.checkOut?.day} ${dates?.checkOut?.month?.shortName}`
-                        : "add dates"}
-                    </span>
+                    {dates?.checkOut ? (
+                      <div className="flex items-center">
+                        <span className="mr-1">
+                          {" "}
+                          {dates?.checkOut?.month.shortName}
+                        </span>
+                        <span> {dates?.checkOut?.day}</span>
+                        <span className="flex items-center ml-3">
+                          <span className="text-sm"> {badgeCalendarDay}</span>
+                        </span>
+                      </div>
+                    ) : (
+                      "add dates"
+                    )}
                   </div>
                 </div>
               </div>
@@ -183,12 +206,6 @@ export const HeaderTabs: React.FC = () => {
                       onDateSelect={handleDateSelect}
                     />
                   )}
-
-                  {/* <span className="bg-transparent focus:outline-none text-sm text-slate-600">
-                    {dates.checkIn || dates.checkOut
-                      ? `${dates?.checkIn?.day} ${dates?.checkIn?.month?.shortName} - ${dates?.checkOut?.day} ${dates?.checkOut?.month?.shortName}`
-                      : "add dates"}
-                  </span> */}
 
                   <span className="bg-transparent focus:outline-none text-sm text-slate-600">
                     {dates.checkIn || dates.checkOut
