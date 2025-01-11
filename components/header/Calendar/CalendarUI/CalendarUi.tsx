@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import React, { useState } from 'react';
-import { Calendar } from 'react-multi-date-picker';
-import { CalendarFooter } from '../footer/CalendarFooter';
+import React, { useState } from "react";
+import { Calendar } from "react-multi-date-picker";
+import { CalendarFooter } from "../Footer/CalendarFooter";
 
 export const CalendarUi: React.FC<CalendarProps> = ({ onDateSelect }) => {
   const [value, setValue] = useState<any[]>([]);
