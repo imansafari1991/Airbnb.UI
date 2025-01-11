@@ -3,7 +3,7 @@ import { RxCross1 } from "react-icons/rx";
 import { useState, useRef, useEffect, useCallback } from "react";
 import { CiSearch } from "react-icons/ci";
 import GuestPart from "./GuestPart";
-import { CalendarUi } from "../calendar/calendarUI/CalendarUi";
+import { CalendarUi } from "../Calendar/CalendarUI/CalendarUi";
 
 interface DateValue {
   day: number;
@@ -34,8 +34,10 @@ export const Stays: React.FC = () => {
   const [resetAll, setResetAll] = useState<boolean>(false);
 
   // Calendar states
-  const [showCheckInCalendar, setShowCheckInCalendar] = useState<boolean>(false);
-  const [showCheckOutCalendar, setShowCheckOutCalendar] = useState<boolean>(false);
+  const [showCheckInCalendar, setShowCheckInCalendar] =
+    useState<boolean>(false);
+  const [showCheckOutCalendar, setShowCheckOutCalendar] =
+    useState<boolean>(false);
 
   // Selected dates
   const [dates, setDates] = useState<CheckInOutValues>({
@@ -108,10 +110,20 @@ export const Stays: React.FC = () => {
     []
   );
 
-  const handleDateSelect = (selected: {
-    checkIn: { day: number; month: { name: string; shortName: string; number: number }; year: number };
-    checkOut: { day: number; month: { name: string; shortName: string; number: number }; year: number };
-  } | null) => {
+  const handleDateSelect = (
+    selected: {
+      checkIn: {
+        day: number;
+        month: { name: string; shortName: string; number: number };
+        year: number;
+      };
+      checkOut: {
+        day: number;
+        month: { name: string; shortName: string; number: number };
+        year: number;
+      };
+    } | null
+  ) => {
     if (!selected) return;
     setDates(selected);
 
@@ -183,7 +195,9 @@ export const Stays: React.FC = () => {
           onClick={(event) => handleToggleCalendar(event, "checkIn")}
         >
           <span className="text-xs text-gray-500">Check in</span>
-          {showCheckInCalendar && <CalendarUi onDateSelect={handleDateSelect} />}
+          {showCheckInCalendar && (
+            <CalendarUi onDateSelect={handleDateSelect} />
+          )}
           <div>
             {dates?.checkIn?.day}
             {dates?.checkIn?.month?.shortName}
@@ -199,7 +213,9 @@ export const Stays: React.FC = () => {
           onClick={(event) => handleToggleCalendar(event, "checkOut")}
         >
           <span className="text-xs text-gray-500">Check out</span>
-          {showCheckOutCalendar && <CalendarUi onDateSelect={handleDateSelect} />}
+          {showCheckOutCalendar && (
+            <CalendarUi onDateSelect={handleDateSelect} />
+          )}
           <div>
             {dates?.checkOut?.day}
             {dates?.checkOut?.month?.shortName}
