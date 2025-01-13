@@ -10,7 +10,7 @@
   --foreground: #171717;
   --gray: #6a6a6a;
   --softGray: #dddddd;
-  --secondSoftGray:rgba(0, 0, 0, 0.3);
+  --secondSoftGray: rgba(0, 0, 0, 0.3);
   --hoverGray: rgba(244, 244, 244, 0.7);
   --softBlack: #222222;
 }
@@ -21,7 +21,7 @@
     --foreground: #ededed;
     --gray: #6a6a6a;
     --softGray: #dddddd;
-    --secondSoftGray:rgba(0, 0, 0, 0.3);
+    --secondSoftGray: rgba(0, 0, 0, 0.3);
     --hoverGray: rgba(244, 244, 244, 0.7);
     --softBlack: #222222;
   }
@@ -29,7 +29,6 @@
 
 body {
   color: var(--foreground);
-  background: var(--background);
+  background: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
-

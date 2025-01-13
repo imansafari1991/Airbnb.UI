@@ -1,7 +1,12 @@
+import { LatLngExpression } from 'leaflet';
+
 export interface IRoomCardProps {
   data: {
-    title: string;
-    loc: string;
+    loc: {
+      city: string;
+      country: string;
+      position: LatLngExpression;
+    };
     rate: number;
     distance: string;
     date: string | Date;
