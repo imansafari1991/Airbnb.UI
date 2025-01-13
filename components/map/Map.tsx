@@ -4,6 +4,7 @@ import L from 'leaflet';
 import { RoomCard } from '../room-card';
 import { ROOM_CARD_DATA } from '@/constants';
 import { IRoomCardProps } from '../room-card/RoomCard.types';
+import React from 'react';
 
 {
   /*create a reusable component for custom icon */
@@ -16,16 +17,12 @@ const customIcon = (cost: string | number): L.DivIcon => {
   });
 };
 
-const locations = ROOM_CARD_DATA.map((room) => ({
-  position: room.loc.position,
-  popupText: room.price as number,
-}));
-const Map = () => {
+function MapComponent() {
   return (
-    <div>
+    <>
       <MapContainer
-        center={[51.505, -0.09]}
-        zoom={13}
+        center={[51.99274772863586, 8.560429425686753]}
+        zoom={12}
         scrollWheelZoom={false}
         style={{ height: '63vh', width: '100%' }}
       >
@@ -33,28 +30,31 @@ const Map = () => {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
         />
-
-        {ROOM_CARD_DATA.map((data (
-          <Marker
-            key={index}
-            position={location.position}
-            icon={customIcon(location.popupText)}
-          >
-            <Popup>
-              <RoomCard
-                data={ROOM_CARD_DATA[index]}
-                isFavorite={ROOM_CARD_DATA[index]?.isFavorite}
-                slug={ROOM_CARD_DATA[index]?.slug}
-                onFavoriteClickHandler={() => {
-                  console.log('action received for favourite');
-                }}
-              />
-            </Popup>
-          </Marker>
-        ))}
+        <>
+          {ROOM_CARD_DATA.map((data) => (
+            <Marker
+              key={data?.id}
+              position={data?.loc?.position}
+              icon={customIcon(data?.price)}
+            >
+              <Popup>
+                <div className='w-full max-h-72'>
+                  <RoomCard
+                    data={data}
+                    isFavorite={data?.isFavorite}
+                    slug={data?.slug}
+                    onFavoriteClickHandler={() => {
+                      console.log('action received for favourite');
+                    }}
+                  />
+                </div>
+              </Popup>
+            </Marker>
+          ))}
+        </>
       </MapContainer>
-    </div>
+    </>
   );
-};
+}
 
-export default Map;
+export default MapComponent;
