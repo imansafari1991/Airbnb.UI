@@ -34,7 +34,7 @@
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,css,md,html,json}": [
-      "prettier --write --ignore-path .prettierignore"
+      "prettier --write"
     ]
   }
 }
