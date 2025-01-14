@@ -2,7 +2,7 @@
 
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Calendar } from "react-multi-date-picker";
 import { CalendarFooter } from "./CalendarFooter";
 import { CalendarPropsT } from "../types/calendar.types";
@@ -10,11 +10,31 @@ import { CalendarPropsT } from "../types/calendar.types";
 export const CalendarUi: React.FC<CalendarPropsT> = ({
   activeTab,
   onDateSelect,
+  onClose,
 }) => {
   const [value, setValue] = useState<any[]>([]);
   const toDateObject = (date: { day: number; month: number; year: number }) => {
     return new Date(date.year, date.month - 1, date.day);
   };
+
+  const calendarRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClose = (event: MouseEvent) => {
+      if (
+        calendarRef.current &&
+        !calendarRef.current.contains(event.target as Node)
+      ) {
+        onClose?.();
+      }
+    };
+
+    document.addEventListener("mousedown", handleClose);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClose);
+    };
+  }, [onClose]);
 
   const isBefore = (date1: Date, date2: Date) =>
     date1.getTime() < date2.getTime();
@@ -81,6 +101,7 @@ export const CalendarUi: React.FC<CalendarPropsT> = ({
   return (
     <div className="w-full bg-slate-500 justify-center">
       <Calendar
+        ref={calendarRef}
         value={value}
         onChange={handleCalendarChange}
         numberOfMonths={2}

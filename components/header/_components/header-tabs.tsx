@@ -32,6 +32,10 @@ export const HeaderTabs: React.FC = () => {
   const [showCheckOutCalendar, setShowCheckOutCalendar] =
     useState<boolean>(false);
 
+  const onClose = () => {
+    setShowCheckInCalendar(false);
+    setShowCheckOutCalendar(false);
+  };
   // Selected dates
   const [dates, setDates] = useState<CheckInOutValues>({
     checkIn: null,
@@ -112,19 +116,23 @@ export const HeaderTabs: React.FC = () => {
                     <CalendarUi
                       activeTab={activeTab}
                       onDateSelect={handleDateSelect}
+                      onClose={onClose}
                     />
                   )}
                   <span className="bg-transparent focus:outline-none text-sm text-slate-600">
                     {dates.checkIn ? (
                       <>
-                        <div className="flex items-center">
-                          <span className="mr-1">
-                            {dates?.checkIn.month.shortName}
-                          </span>
-                          <span> {dates?.checkIn.day}</span>
-                          <span className="flex items-center ml-3">
-                            <span className="text-sm"> {badgeCalendarDay}</span>
-                          </span>
+                        <div className="flex">
+                          <div className="flex items-center">
+                            <span className="mr-1">
+                              {dates?.checkIn.month.shortName}
+                            </span>
+                            <span> {dates?.checkIn.day}</span>
+                            <span className="text-sm ml-3">
+                              {" "}
+                              {badgeCalendarDay}
+                            </span>
+                          </div>
                         </div>
                       </>
                     ) : (
@@ -145,6 +153,7 @@ export const HeaderTabs: React.FC = () => {
                       <CalendarUi
                         activeTab={activeTab}
                         onDateSelect={handleDateSelect}
+                        onClose={onClose}
                       />
                     )}
                     {dates?.checkOut ? (
@@ -204,6 +213,7 @@ export const HeaderTabs: React.FC = () => {
                     <CalendarUi
                       activeTab={activeTab}
                       onDateSelect={handleDateSelect}
+                      onClose={onClose}
                     />
                   )}
 
