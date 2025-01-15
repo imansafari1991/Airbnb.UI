@@ -2,12 +2,21 @@
 
 "use client";
 
-import React, { useState, createContext } from "react";
+import React, { useState, createContext, ReactNode } from "react";
 
-const CalendarContext = createContext();
+interface CalendarContextType {
+  badgeCalendarDay: number | string | null;
+  setBadgeCalendarDay: React.Dispatch<
+    React.SetStateAction<number | string | null>
+  >;
+}
 
-export function CalendarProvider({ children }) {
-  const [badgeCalendarDay, setBadgeCalendarDay] = useState<number>(null);
+const CalendarContext = createContext<CalendarContextType | undefined>(
+  undefined
+);
+
+export function CalendarProvider({ children }: { children: ReactNode }) {
+  const [badgeCalendarDay, setBadgeCalendarDay] = useState<number | null>(null);
 
   return (
     <CalendarContext.Provider value={{ badgeCalendarDay, setBadgeCalendarDay }}>

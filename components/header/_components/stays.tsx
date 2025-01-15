@@ -2,10 +2,9 @@
 
 "use client";
 import { RxCross1 } from "react-icons/rx";
-import { useState, useRef, useEffect} from "react";
+import { useState, useRef, useEffect } from "react";
 import { CiSearch } from "react-icons/ci";
 import GuestPart from "./GuestPart";
-import {Checks} from "@/components/header/Calendar/_components/Checks";
 
 export const Stays: React.FC = () => {
   const maxTotalGuests = 16;
@@ -128,8 +127,6 @@ export const Stays: React.FC = () => {
             className="bg-transparent focus:outline-none text-sm"
           />
         </div>
-
-       <Checks/>
 
         {/* Who */}
         <div className="border-l border-gray-300 h-full" />

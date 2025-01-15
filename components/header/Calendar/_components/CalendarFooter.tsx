@@ -13,7 +13,9 @@ const days: [string, number][] = [
 ];
 
 export const CalendarFooter = () => {
-  const { badgeCalendarDay, setBadgeCalendarDay } = useContext(CalendarContext);
+  // const { badgeCalendarDay, setBadgeCalendarDay } = useContext(CalendarContext);
+  const { badgeCalendarDay = null, setBadgeCalendarDay = () => {} } =
+    useContext(CalendarContext) ?? {};
 
   return (
     <div className="flex items-center gap-3 p-2">

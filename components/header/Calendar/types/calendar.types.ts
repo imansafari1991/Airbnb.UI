@@ -1,6 +1,6 @@
 /** @format */
 
-interface DateValueT {
+export interface DateValueT {
   day: number;
   month: { name: string; shortName: string; number: number };
   year: number;
@@ -16,11 +16,25 @@ export type ChecksT = {
   month: { name: string; shortName: string; number: number };
   year: number;
 };
+export type ActiveTabT = "Stays" | "Experiences";
 
 export interface CalendarPropsT {
+  activeTab: ActiveTabT;
   onClose: () => void;
   onDateSelect: (dates: {
-    checkIn: { day: number; month: object; year: number };
-    checkOut: { day: number; month: object; year: number };
+    checkIn: {
+      day: number;
+      month: { name: string; shortName: string; number: number };
+      year: number;
+    };
+    checkOut: {
+      day: number;
+      month: { name: string; shortName: string; number: number };
+      year: number;
+    } | null;
   }) => void;
+}
+
+export interface ChecksPropsT {
+  activeTab: ActiveTabT;
 }
