@@ -30,7 +30,7 @@ export const ChecksManager: React.FC<ChecksPropsT> = ({ activeTab }) => {
   const handleDateSelect = (
     selected: {
       checkIn: ChecksT;
-      checkOut: ChecksT;
+      checkOut: ChecksT | null;
     } | null
   ) => {
     if (!selected) return;

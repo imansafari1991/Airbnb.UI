@@ -16,7 +16,9 @@ const CalendarContext = createContext<CalendarContextType | undefined>(
 );
 
 export function CalendarProvider({ children }: { children: ReactNode }) {
-  const [badgeCalendarDay, setBadgeCalendarDay] = useState<number | null>(null);
+  const [badgeCalendarDay, setBadgeCalendarDay] = useState<
+    number | string | null
+  >(null);
 
   return (
     <CalendarContext.Provider value={{ badgeCalendarDay, setBadgeCalendarDay }}>
