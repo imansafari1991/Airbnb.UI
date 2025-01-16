@@ -45,10 +45,10 @@ export const ChecksManager: React.FC<ChecksPropsT> = ({ activeTab }) => {
     (event: React.MouseEvent, calendar: "checkIn" | "checkOut") => {
       event.stopPropagation();
       if (calendar === "checkIn") {
-        setShowCheckInCalendar((prev) => !prev);
+        setShowCheckInCalendar(true);
         setShowCheckOutCalendar(false);
       } else {
-        setShowCheckOutCalendar((prev) => !prev);
+        setShowCheckOutCalendar(true);
         setShowCheckInCalendar(false);
       }
     },
