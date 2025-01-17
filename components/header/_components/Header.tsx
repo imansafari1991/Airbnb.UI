@@ -1,31 +1,15 @@
 "use client";
 
-import Image from "next/image";
-
-import { UserAccount } from "./user-account";
-
-import { HeaderTabs } from "./header-tabs";
 import { useEffect, useState } from "react";
+
 import { HeaderScrolledSearch } from "./header-scrolled-search";
+import { HeaderTabs } from "./header-tabs";
+import Image from "next/image";
+import { UserAccount } from "./user-account";
+import { useScroll } from "@/hooks/useScrooll";
 
 const Header = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  // Monitor scroll position
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+  const isScrolled = useScroll();
 
   return (
     <div className="header fixed top-0 left-0 z-50 w-full h-40 flex items-start justify-between mx-auto pl-4 pr-4 bg-white">
