@@ -1,0 +1,16 @@
+.tabs {
+  .tab-labels {
+    @apply relative gap-8 mb-3 space-x-2 inline-flex cursor-pointer select-none flex-wrap items-center justify-center text-center text-gray-600;
+
+    & > .tab-label {
+      @apply text-current font-semibold pb-2 transition-all duration-75 border-b border-transparent text-sm xl:text-xl text-gray-400;
+
+      &.tab-active {
+        @apply text-neutral-950 border-b;
+      }
+    }
+  }
+  .tab-content {
+    @apply leading-10 text-lg min-h-screen;
+  }
+}

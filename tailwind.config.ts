@@ -1,4 +1,6 @@
 import type { Config } from "tailwindcss";
+import type { PluginAPI } from "tailwindcss/types/config";
+
 
 export default {
   content: [
@@ -11,8 +13,27 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        gray:"var(--gray)",
+        softGray:"var(--softGray)",
+        hoverGray:"var(--hoverGray)",
+        softBlack:"var(--softBlack)",
+        secondSoftGray:"var(--secondSoftGray)",
       },
     },
   },
-  plugins: [],
+
+  plugins: [
+    (api: PluginAPI) => {
+      const { addUtilities } = api;
+      addUtilities({
+        ".no-scrollbar": {
+          "-ms-overflow-style": "none",
+          "scrollbar-width": "none",
+          "&::-webkit-scrollbar": {
+            display: "none",
+          },
+        },
+      });
+    },
+  ],
 } satisfies Config;
