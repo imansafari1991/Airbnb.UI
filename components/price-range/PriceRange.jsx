@@ -1,7 +1,8 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import "./price-range.css";
+import "../../styles/components/price-range.css";
 import BarChart from "./ExpenseChart";
+import { calculateDisabledBars } from "./BarCountResult";
 
 const PriceRange = () => {
   // component setup
@@ -49,8 +50,8 @@ const PriceRange = () => {
       const maxPercent =
         ((maxVal - sliderMinValue) / (sliderMaxValue - sliderMinValue)) * 100;
 
-      range.style.right = `${minPercent}%`;
-      range.style.left = `${100 - maxPercent}%`;
+      range.style.left = `${minPercent}%`;
+      range.style.right = `${100 - maxPercent}%`;
     }
   };
 
@@ -96,6 +97,14 @@ const PriceRange = () => {
     }
   };
 
+  const { disabledBefor, disabledAfter } = calculateDisabledBars(
+    200,
+    800,
+    100,
+    0,
+    1000
+  );
+
   return (
     <>
       <div className="p-14 bg-white max-w-[600px] w-full mx-auto">
@@ -105,7 +114,7 @@ const PriceRange = () => {
         </p>
 
         {/* price range bar */}
-        <BarChart />
+        <BarChart disabledBefor={disabledBefor} disabledAfter={disabledAfter} />
 
         <div className="range-slider mb-14">
           <div className="slider-track h-full absolute bg-[#E31C5F] left-0 right-full rounded-md"></div>
