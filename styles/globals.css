@@ -1,0 +1,35 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+
+@import "./components.css";
+
+@import "tailwindcss/utilities";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --gray: #6a6a6a;
+  --softGray: #dddddd;
+  --secondSoftGray:rgba(0, 0, 0, 0.3);
+  --hoverGray: rgba(244, 244, 244, 0.7);
+  --softBlack: #222222;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+    --gray: #6a6a6a;
+    --softGray: #dddddd;
+    --secondSoftGray:rgba(0, 0, 0, 0.3);
+    --hoverGray: rgba(244, 244, 244, 0.7);
+    --softBlack: #222222;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+}
+

@@ -15,13 +15,16 @@ type FeatureProps = {
 };
 
 const Feature = ({ title, descriptions }: FeatureProps) => {
-  const [checked, setChecked] = useState<boolean>();
+  const [, setChecked] = useState<boolean>();
 
   return (
     <div className="py-2">
       <header className="font-medium ">{title}</header>
       {descriptions.map((description) => (
-        <div key={description.id} className="py-3 px-1 flex flex-row justify-between md:flex-row-reverse md:justify-end">
+        <div
+          key={description.id}
+          className="py-3 px-1 flex flex-row justify-between md:flex-row-reverse md:justify-end"
+        >
           <label
             htmlFor={description.id}
             className={
@@ -34,7 +37,7 @@ const Feature = ({ title, descriptions }: FeatureProps) => {
             id={description.id}
             type="checkbox"
             name={description.text}
-            style={{ scale: "2"}}
+            style={{ scale: "2" }}
             onClick={() => {
               setChecked((prev) => !prev);
               description.checked = !description.checked;
