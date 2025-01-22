@@ -2,9 +2,11 @@
 
 import React, { useState } from "react";
 import { Calendar } from "react-multi-date-picker";
-import { CalendarFooter } from "../Footer/CalendarFooter";
+import { CalendarFooter } from "../_components/CalendarFooter";
+import { CalendarPropsT } from "../types/calendar.types";
 
-export const CalendarUi: React.FC<CalendarProps> = ({ onDateSelect }) => {
+
+export const CalendarUi: React.FC<CalendarPropsT> = ({ onDateSelect }) => {
   const [value, setValue] = useState<any[]>([]);
 
   const handleCalendarChange = (selectedDates: any[]) => {
