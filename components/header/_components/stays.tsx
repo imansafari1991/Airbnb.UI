@@ -2,9 +2,21 @@
 
 "use client";
 import { RxCross1 } from "react-icons/rx";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { CiSearch } from "react-icons/ci";
 import GuestPart from "./GuestPart";
+import { CalendarUi } from "../Calendar/CalendarUI/CalendarUi";
+
+interface DateValue {
+  day: number;
+  month: { name: string; shortName: string; number: number };
+  year: number;
+}
+
+interface CheckInOutValues {
+  checkIn: DateValue | null;
+  checkOut: DateValue | null;
+}
 
 export const Stays: React.FC = () => {
   const maxTotalGuests = 16;
@@ -22,6 +34,18 @@ export const Stays: React.FC = () => {
 
   // Reset guests
   const [resetAll, setResetAll] = useState<boolean>(false);
+
+  // Calendar states
+  const [showCheckInCalendar, setShowCheckInCalendar] =
+    useState<boolean>(false);
+  const [showCheckOutCalendar, setShowCheckOutCalendar] =
+    useState<boolean>(false);
+
+  // Selected dates
+  const [dates, setDates] = useState<CheckInOutValues>({
+    checkIn: null,
+    checkOut: null,
+  });
 
   // ------------------ GUEST DROPDOWN ------------------
 
@@ -73,6 +97,42 @@ export const Stays: React.FC = () => {
       : fullDisplayText
     : "Add guests";
 
+  // Toggle between showing CheckIn / CheckOut calendar
+  const handleToggleCalendar = useCallback(
+    (event: React.MouseEvent, calendar: "checkIn" | "checkOut") => {
+      event.stopPropagation();
+      if (calendar === "checkIn") {
+        setShowCheckInCalendar((prev) => !prev);
+        setShowCheckOutCalendar(false);
+      } else {
+        setShowCheckOutCalendar((prev) => !prev);
+        setShowCheckInCalendar(false);
+      }
+    },
+    []
+  );
+
+  const handleDateSelect = (
+    selected: {
+      checkIn: {
+        day: number;
+        month: { name: string; shortName: string; number: number };
+        year: number;
+      };
+      checkOut: {
+        day: number;
+        month: { name: string; shortName: string; number: number };
+        year: number;
+      };
+    } | null
+  ) => {
+    if (!selected) return;
+    setDates(selected);
+
+    setShowCheckInCalendar(false);
+    setShowCheckOutCalendar(false);
+  };
+
   return (
     <div className="relative flex items-center justify-between max-w-5xl bg-white rounded-full px-2 py-2 border border-gray-300 shadow-md">
       {isDropGuest && (
@@ -117,7 +177,7 @@ export const Stays: React.FC = () => {
         </div>
       )}
 
-      <div className="flex space-x-4">
+<div className="flex space-x-4">
         {/* Where */}
         <div className="flex flex-col">
           <span className="text-xs text-gray-500">Where</span>
