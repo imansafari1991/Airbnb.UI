@@ -1,0 +1,57 @@
+/** @format */
+
+.rmdp-day-picker {
+  @apply w-full !important;
+}
+.rmdp-day-picker > div {
+  @apply w-full !important;
+}
+.rmdp-shadow {
+  @apply w-[60%] absolute top-28 right-[20%]  px-16 py-10 rounded-[35px] !important;
+}
+.rmdp-ep-arrow {
+  @apply hidden !important;
+}
+.rmdp-header-values > span {
+  @apply text-base font-semibold leading-[1.2] mt-[0.67em] mb-[0.67em] text-left !important;
+}
+.rmdp-header-values span {
+  @apply pl-[1px] !important;
+}
+.rmdp-week > div {
+  @apply text-[#6A6A6A] font-semibold p-7 !important;
+}
+
+.rmdp-arrow {
+  @apply inline-block border-r-2 border-b-2 border-[#6A6A6A] h-[9px] w-[9px] p-[2px] !important;
+}
+
+.rmdp-wrapper {
+  @apply rounded-[30px] !important;
+}
+
+.rmdp-border-bottom {
+  @apply border-b-0 !important;
+}
+
+.rmdp-top-class {
+  @apply flex flex-col;
+}
+.rmdp-border-right {
+  @apply border-none !important;
+}
+.rmdp-day.rmdp-disabled {
+  @apply text-slate-300 !important;
+}
+
+.rmdp-day :hover {
+  @apply bg-black !important;
+}
+
+.rmdp-day.rmdp-selected span,
+.rmdp-day.rmdp-today span {
+  @apply bg-black !important;
+}
+.rmdp-day.rmdp-today:not(.rmdp-selected) span {
+  @apply bg-transparent text-[unset] !important;
+}
