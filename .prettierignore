@@ -1,0 +1,36 @@
+# Ignore the build output
+.next/
+out/
+
+# Ignore dependencies
+node_modules/
+
+# Ignore environment files
+.env
+.env.*.local
+
+# Ignore TypeScript build output
+*.d.ts
+
+# Ignore test coverage
+coverage/
+
+# Ignore public/static assets
+public/
+static/
+
+# Ignore logs and temporary files
+*.log
+*.tmp
+*.lock
+
+# Ignore Storybook files (if used)
+.storybook/
+stories/
+
+# Ignore VSCode settings
+.vscode/
+
+# Ignore local Prettier configuration overrides
+.prettierrc
+.prettierignore
