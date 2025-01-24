@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { Calendar } from 'react-multi-date-picker';
-import { CalendarFooter } from '../footer/CalendarFooter';
+import { CalendarFooter } from '../Footer/CalendarFooter';
 
 export const CalendarUi: React.FC<CalendarProps> = ({ onDateSelect }) => {
   const [value, setValue] = useState<any[]>([]);
@@ -32,18 +32,18 @@ export const CalendarUi: React.FC<CalendarProps> = ({ onDateSelect }) => {
   };
 
   return (
-    <div className="w-full bg-slate-500 justify-center">
+    <div className='w-full bg-slate-500 justify-center'>
       <Calendar
         value={value}
         onChange={handleCalendarChange}
         rangeHover
         range
         numberOfMonths={2}
-        monthYearSeparator=" "
+        monthYearSeparator=' '
         minDate={new Date()}
         plugins={[
           // Custom footer
-          <CalendarFooter key="customFooter" />,
+          <CalendarFooter key='customFooter' />,
         ]}
       />
     </div>

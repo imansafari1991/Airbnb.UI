@@ -12,6 +12,7 @@ const customIcon = (cost: string | number): L.DivIcon => {
     iconSize: [45, 35],
   });
 };
+
 function MapComponent() {
   return (
     <div>
