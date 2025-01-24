@@ -16,6 +16,3 @@ export default function Home() {
     </>
   );
 }
-{
-  /*you need a state if the room card is open set the map to false  */
-}

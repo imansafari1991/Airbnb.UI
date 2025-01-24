@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import NavigationTag from '../navigation/NavigationTag';
 import ListCard from '../list/ListCard';
 import ShowMap from '../map/ShowMap';
+import NavigateButton from '../map/NavigateButton';
 
 const main = () => {
   const [menuIsOpen, setMenuIsOpen] = useState(true);
@@ -12,14 +13,7 @@ const main = () => {
     <>
       <main className='flex flex-col items-center justify-center w-full mt-20'>
         <NavigationTag />
-        <button
-          className='bg-black p-4 rounded-3xl text-white fixed bottom-10 z-40'
-          onClick={() => {
-            setMenuIsOpen(!menuIsOpen);
-          }}
-        >
-          {menuIsOpen ? ' Show on the map' : 'show the rooms'}
-        </button>
+        <NavigateButton menuIsOpen={menuIsOpen} setMenuIsOpen={setMenuIsOpen} />
       </main>
       {menuIsOpen ? <ListCard /> : <ShowMap />}
     </>

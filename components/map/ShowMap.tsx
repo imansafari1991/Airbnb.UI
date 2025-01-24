@@ -1,12 +1,12 @@
 'use client';
 
-import dynamic from 'next/dynamic';
 import React from 'react';
+import dynamic from 'next/dynamic';
 const Map = dynamic(() => import('./Map'), { ssr: false });
 
 export default function ShowMap() {
   return (
-    <div>
+    <div className='relative'>
       <Map />
     </div>
   );

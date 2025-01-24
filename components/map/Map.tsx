@@ -2,13 +2,9 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import { RoomCard } from '../room-card';
-import { ROOM_CARD_DATA } from '@/constants';
-import { IRoomCardProps } from '../room-card/RoomCard.types';
 import React from 'react';
+import { ROOM_CARD_DATA } from '@/constants';
 
-{
-  /*create a reusable component for custom icon */
-}
 const customIcon = (cost: string | number): L.DivIcon => {
   return new L.DivIcon({
     className: ' rounded-full text-black text-sm text-bold bg-white',
@@ -16,29 +12,28 @@ const customIcon = (cost: string | number): L.DivIcon => {
     iconSize: [45, 35],
   });
 };
-
 function MapComponent() {
   return (
-    <>
+    <div>
       <MapContainer
         center={[51.99274772863586, 8.560429425686753]}
         zoom={12}
         scrollWheelZoom={false}
-        style={{ height: '63vh', width: '100%' }}
+        style={{ height: '75vh', width: '100vw', position: 'absolute' }}
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
         />
         <>
-          {ROOM_CARD_DATA.map((data) => (
+          {ROOM_CARD_DATA?.map((data) => (
             <Marker
               key={data?.id}
               position={data?.loc?.position}
               icon={customIcon(data?.price)}
             >
               <Popup>
-                <div className='w-full max-h-72'>
+                <div className='w-full max-h-72 gap-y-0'>
                   <RoomCard
                     data={data}
                     isFavorite={data?.isFavorite}
@@ -53,7 +48,7 @@ function MapComponent() {
           ))}
         </>
       </MapContainer>
-    </>
+    </div>
   );
 }
 
