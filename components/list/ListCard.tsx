@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import React from "react";
-import { RoomCard } from "../room-card";
-import { ROOM_CARD_DATA } from "@/constants";
+import React from 'react';
+import { RoomCard } from '../room-card';
+import { ROOM_CARD_DATA } from '@/constants';
 
 const ListCard: React.FC = () => {
   return (
@@ -15,7 +15,7 @@ const ListCard: React.FC = () => {
             isFavorite={roomData?.isFavorite}
             slug={roomData?.slug}
             onFavoriteClickHandler={() => {
-              console.log("action received for favourite");
+              console.log('action received for favourite');
             }}
           />
         ))}

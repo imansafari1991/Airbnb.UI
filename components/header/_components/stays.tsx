@@ -1,3 +1,5 @@
+/** @format */
+
 "use client";
 import { RxCross1 } from "react-icons/rx";
 import { useState, useRef, useEffect, useCallback } from "react";
@@ -175,7 +177,7 @@ export const Stays: React.FC = () => {
         </div>
       )}
 
-      <div className="flex space-x-4">
+<div className="flex space-x-4">
         {/* Where */}
         <div className="flex flex-col">
           <span className="text-xs text-gray-500">Where</span>
@@ -184,42 +186,6 @@ export const Stays: React.FC = () => {
             placeholder="Search destinations"
             className="bg-transparent focus:outline-none text-sm"
           />
-        </div>
-
-        {/* Divider */}
-        <div className="border-l border-gray-600 h-full" />
-
-        {/* Check In */}
-        <div
-          className="flex flex-col"
-          onClick={(event) => handleToggleCalendar(event, "checkIn")}
-        >
-          <span className="text-xs text-gray-500">Check in</span>
-          {showCheckInCalendar && (
-            <CalendarUi onDateSelect={handleDateSelect} />
-          )}
-          <div>
-            {dates?.checkIn?.day}
-            {dates?.checkIn?.month?.shortName}
-          </div>
-        </div>
-
-        {/* Divider */}
-        <div className="border-l border-gray-300 h-full" />
-
-        {/* Check Out */}
-        <div
-          className="flex flex-col"
-          onClick={(event) => handleToggleCalendar(event, "checkOut")}
-        >
-          <span className="text-xs text-gray-500">Check out</span>
-          {showCheckOutCalendar && (
-            <CalendarUi onDateSelect={handleDateSelect} />
-          )}
-          <div>
-            {dates?.checkOut?.day}
-            {dates?.checkOut?.month?.shortName}
-          </div>
         </div>
 
         {/* Who */}
