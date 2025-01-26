@@ -105,7 +105,7 @@ const PriceRange = () => {
     initialMinPrice,
     initialMaxPrice
   );
-  // console.log(disabledBefor, disabledAfter);
+
   return (
     <>
       <div className="p-14 bg-white max-w-[600px] w-full mx-auto">
@@ -145,26 +145,34 @@ const PriceRange = () => {
         <div className="flex justify-between w-full">
           <div className="w-auto rounded-xl border-1 border-gray-400 bg-white flex flex-col items-center">
             <label className="text-[#6A6A6A] py-2 text-[12px]">Minimum</label>
-            <input
-              type="number"
-              value={minInput}
-              onChange={handleMinInput}
-              onKeyDown={(e) => handleInputKeyDown(e, "min")}
-              min={sliderMinValue}
-              max={maxVal - minGap}
-            />
+            <div className="input-number min-w-[98px] px-3 py-2 border border-1 border-yellow-300 text-center overflow-hidden bg-white rounded-3xl text-black">
+              <span className=" pr-2">€</span>
+              <input
+                className="w-10"
+                type="number"
+                value={minInput}
+                onChange={handleMinInput}
+                onFocus={(e) => handleInputKeyDown(e, "min")}
+                min={sliderMinValue}
+                max={maxVal - minGap}
+              />
+            </div>
           </div>
           <div className="w-auto rounded-xl border-1 border-gray-400 bg-white flex flex-col items-center ">
             <label className="text-[#6A6A6A] py-2 text-[12px]">Maximum</label>
-            <input
-              type="number"
-              value={maxInput}
-              onChange={handleMaxInput}
-              onKeyDown={(e) => handleInputKeyDown(e, "max")}
-              className="float-right"
-              min={minVal + minGap}
-              max={sliderMaxValue}
-            />
+
+            <div className="input-number min-w-[98px] px-3 py-2 border border-1 border-yellow-300 text-center overflow-hidden bg-white rounded-3xl text-black">
+              <span className=" pr-2">€</span>
+              <input
+                className="w-10"
+                type="number"
+                value={maxInput}
+                onChange={handleMaxInput}
+                onFocus={(e) => handleInputKeyDown(e, "max")}
+                min={minVal + minGap}
+                max={sliderMaxValue}
+              />
+            </div>
           </div>
         </div>
       </div>
