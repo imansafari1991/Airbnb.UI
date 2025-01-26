@@ -1,7 +1,6 @@
 import Header from "../components/header/_components/Header";
 import NavigationTag from "../components/navigation/NavigationTag";
 import ListCard from "../components/list/ListCard";
-import PriceRange from "../components/price-range/PriceRange";
 
 export default function Home() {
   return (
@@ -12,7 +11,6 @@ export default function Home() {
       <main className="flex flex-col items-center justify-center w-full mt-40">
         <NavigationTag />
         <ListCard />
-        <PriceRange />
       </main>
     </div>
   );
