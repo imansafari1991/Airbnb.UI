@@ -8,6 +8,7 @@ const PriceRange = () => {
   // component setup
   const initialMinPrice = 0;
   const initialMaxPrice = 1000;
+  const totalBars = 50;
 
   const [sliderMinValue] = useState(initialMinPrice);
   const [sliderMaxValue] = useState(initialMaxPrice);
@@ -42,7 +43,7 @@ const PriceRange = () => {
   // update the slider track
   const setSliderTrack = () => {
     const range = document.querySelector(".slider-track");
-    console.log(range);
+    // console.log(range);
 
     if (range) {
       const minPercent =
@@ -98,13 +99,13 @@ const PriceRange = () => {
   };
 
   const { disabledBefor, disabledAfter } = calculateDisabledBars(
-    200,
-    800,
-    100,
-    0,
-    1000
+    minVal,
+    maxVal,
+    totalBars,
+    initialMinPrice,
+    initialMaxPrice
   );
-
+  // console.log(disabledBefor, disabledAfter);
   return (
     <>
       <div className="p-14 bg-white max-w-[600px] w-full mx-auto">
@@ -114,7 +115,11 @@ const PriceRange = () => {
         </p>
 
         {/* price range bar */}
-        <BarChart disabledBefor={disabledBefor} disabledAfter={disabledAfter} />
+        <BarChart
+          totalBars={totalBars}
+          disabledBefor={disabledBefor}
+          disabledAfter={disabledAfter}
+        />
 
         <div className="range-slider mb-14">
           <div className="slider-track h-full absolute bg-[#E31C5F] left-0 right-full rounded-md"></div>

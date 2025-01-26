@@ -14,15 +14,11 @@ export function calculateDisabledBars(
     throw new Error("Invalid Inputs.");
   }
 
-  const barInterval = (rangeEnd - rangeStart) / totalBars - 1;
+  const barInterval = (rangeEnd - rangeStart) / totalBars;
   const minBarIndex = Math.round((min - rangeStart) / barInterval);
   const maxBarIndex = Math.round((max - rangeStart) / barInterval);
-
   return {
     disabledBefor: minBarIndex,
-    // disabledAfter: totalBars - maxBarIndex - 1,
     disabledAfter: maxBarIndex,
   };
 }
-
-// export default calculateDisabledBars;
